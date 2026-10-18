@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Germán O. Gómez-Fernández — Executive & Scientific Dossier</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tipografías de Alta Costura: Cormorant Garamond (Editorial) + Montserrat (Suiza/Geométrica) + Pinyon Script (Firma Caligráfica) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        onyx: '#0A0A0A',
+                        charcoal: '#141416',
+                        ivory: '#FAF8F5',
+                        stone: 'var(--color-border)',
+                        gold: 'var(--color-gold)',
+                        platinum: 'var(--color-platinum)'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            /* Paleta Modo Claro calibrada para contraste óptico editorial impecable (WCAG AA/AAA) */
+            --bg-page: #FAF8F5;
+            --color-gold: #96681E;         /* Oro bronce antiguo cálido: 4.8:1 contraste sobre marfil */
+            --color-gold-hover: #7A5314;
+            --color-platinum: #4B5563;     /* Pizarra neutro oscuro: 6.2:1 contraste legible */
+            --color-border: #D6D1C7;       /* Líneas de estructura limpias y perceptibles */
+            --header-bg: rgba(250, 248, 245, 0.94);
+        }
+
+        .dark {
+            /* Paleta Modo Oscuro: Negro ónix absoluto con destellos dorados y platino lunar */
+            --bg-page: #0A0A0A;
+            --color-gold: #D4AF37;         /* Oro real radiante sobre fondo oscuro */
+            --color-gold-hover: #F3E5AB;
+            --color-platinum: #A1A1AA;     /* Platino plateado luminoso */
+            --color-border: rgba(255, 255, 255, 0.12);
+            --header-bg: rgba(10, 10, 10, 0.92);
+        }
+
+        body {
+            background-color: var(--bg-page);
+            transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Control de Idioma Instantáneo (Por defecto Inglés en lang="en") */
+        html[lang="es"] [data-lang="en"] { display: none !important; }
+        html[lang="en"] [data-lang="es"] { display: none !important; }
+
+        /* Estilo activo selector de idioma proporcional EN / ES */
+        html[lang="en"] #btn-lang-en {
+            background-color: #0A0A0A;
+            color: #FAF8F5;
+            font-weight: 600;
+        }
+        html.dark[lang="en"] #btn-lang-en {
+            background-color: var(--color-gold);
+            color: #0A0A0A;
+            font-weight: 600;
+        }
+        html[lang="en"] #btn-lang-es {
+            color: var(--color-platinum);
+            opacity: 0.75;
+        }
+        html[lang="en"] #btn-lang-es:hover {
+            color: var(--color-gold);
+            opacity: 1;
+        }
+
+        html[lang="es"] #btn-lang-es {
+            background-color: #0A0A0A;
+            color: #FAF8F5;
+            font-weight: 600;
+        }
+        html.dark[lang="es"] #btn-lang-es {
+            background-color: var(--color-gold);
+            color: #0A0A0A;
+            font-weight: 600;
+        }
+        html[lang="es"] #btn-lang-en {
+            color: var(--color-platinum);
+            opacity: 0.75;
+        }
+        html[lang="es"] #btn-lang-en:hover {
+            color: var(--color-gold);
+            opacity: 1;
+        }
+
+        /* Efecto de trazo de pluma estilográfica en enlaces */
+        .luxury-link {
+            position: relative;
+            display: inline-block;
+        }
+        .luxury-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--color-gold);
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+        .luxury-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .section-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--color-gold);
+        }
+
+        .signature-logo {
+            font-family: 'Pinyon Script', 'Cormorant Garamond', 'Baskerville', 'Apple Chancery', cursive, serif;
+            letter-spacing: 0.03em;
+            display: inline-block;
+            line-height: 1;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s ease;
+        }
+        .signature-logo:hover {
+            transform: scale(1.08);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-luxury {
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+
+    <script>
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            try {
+                localStorage.setItem('preferred_lang', lang);
+            } catch(e) {}
+        }
+
+        function toggleLanguage() {
+            const currentLang = document.documentElement.getAttribute('lang') || 'en';
+            const newLang = currentLang === 'en' ? 'es' : 'en';
+            setLanguage(newLang);
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            try {
+                localStorage.setItem('preferred_theme', isDark ? 'dark' : 'light');
+            } catch(e) {}
+        }
+
+        // Inicialización instantánea respetando preferencia guardada (por defecto Inglés)
+        (function initSettings() {
+            try {
+                const savedLang = localStorage.getItem('preferred_lang') || 'en';
+                document.documentElement.setAttribute('lang', savedLang);
+
+                const savedTheme = localStorage.getItem('preferred_theme');
+                if (savedTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else if (savedTheme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch(e) {}
+        })();
+    </script>
+</head>
+
+<body class="bg-ivory text-onyx dark:bg-onyx dark:text-ivory font-sans font-normal antialiased selection:bg-gold selection:text-white">
+
+    <!-- CABECERA ARQUITECTÓNICA -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[var(--header-bg)] backdrop-blur-md border-b border-stone dark:border-white/10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+            <!-- Firma Personal Caligráfica / Estilizada tipo 𝒢ℱ (Anclada a la izquierda con amplio espacio) -->
+            <a href="#" class="shrink-0 flex items-center select-none group mr-8 lg:mr-16" title="Germán Gómez-Fernández">
+                <span class="signature-logo text-3xl sm:text-4xl text-onyx dark:text-ivory group-hover:text-gold transition-colors duration-300">
+                    𝒢<span class="text-gold">ℱ</span>
+                </span>
+            </a>
+
+            <!-- Contenedor Derecho: Navegación + Selectores (aleja I. Profile del logo) -->
+            <div class="flex items-center space-x-8 xl:space-x-10">
+                <!-- Navegación Desktop -->
+                <nav class="hidden xl:flex items-center space-x-6 xl:space-x-7 text-xs tracking-[0.14em] uppercase font-medium text-onyx/80 dark:text-ivory/80">
+                    <a href="#perfil" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                        <span data-lang="en">I. Profile</span>
+                        <span data-lang="es">I. Síntesis</span>
+                    </a>
+                    <a href="#trayectoria" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                        <span data-lang="en">II. Experience</span>
+                        <span data-lang="es">II. Trayectoria</span>
+                    </a>
+                    <a href="#estancias" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                        <span data-lang="en">III. Fellowships</span>
+                        <span data-lang="es">III. Internacional</span>
+                    </a>
+                    <a href="#publicaciones" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                        <span data-lang="en">IV. Publications</span>
+                        <span data-lang="es">IV. Publicaciones</span>
+                    </a>
+                    <a href="#academia" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                        <span data-lang="en">V. Education</span>
+                        <span data-lang="es">V. Academia</span>
+                    </a>
+                    <a href="#congresos" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                        <span data-lang="en">VI. Congresses & Grants</span>
+                        <span data-lang="es">VI. Congresos & I+D</span>
+                    </a>
+                </nav>
+
+                <!-- Controles de Idioma (EN/ES proporcional) y Acabado (Light/Dark) -->
+                <div class="flex items-center gap-3">
+                <!-- Selector de Idioma: Inglés primero, Español segundo, tamaño equilibrado -->
+                <div class="inline-flex items-center border border-stone dark:border-white/20 p-0.5 bg-black/[0.03] dark:bg-white/5 transition-colors" role="group" aria-label="Language Selector">
+                    <button type="button" 
+                            id="btn-lang-en"
+                            onclick="setLanguage('en')" 
+                            title="English"
+                            class="px-2.5 py-1 text-xs tracking-wider uppercase font-medium transition-all duration-200 cursor-pointer">
+                        EN
+                    </button>
+                    <span class="text-stone-400 dark:text-white/20 text-xs px-0.5 select-none font-light">/</span>
+                    <button type="button" 
+                            id="btn-lang-es"
+                            onclick="setLanguage('es')" 
+                            title="Español"
+                            class="px-2.5 py-1 text-xs tracking-wider uppercase font-medium transition-all duration-200 cursor-pointer">
+                        ES
+                    </button>
+                </div>
+
+                <!-- Botón Acabado (Tema Claro / Oscuro con alto contraste) -->
+                <button type="button"
+                        onclick="toggleTheme()" 
+                        title="Switch Theme / Cambiar Tema"
+                        class="h-8 px-3.5 text-xs tracking-[0.16em] uppercase border border-stone dark:border-white/20 hover:border-gold dark:hover:border-gold transition-all duration-300 flex items-center gap-2 cursor-pointer bg-black/[0.03] dark:bg-white/5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-onyx dark:bg-gold transition-colors"></span>
+                    <span class="dark:hidden font-medium text-onyx">
+                        <span data-lang="en">Dark</span>
+                        <span data-lang="es">Oscuro</span>
+                    </span>
+                    <span class="hidden dark:inline font-medium text-ivory">
+                        <span data-lang="en">Light</span>
+                        <span data-lang="es">Claro</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24 lg:grid lg:grid-cols-12 lg:gap-16">
+
+        <!-- COLUMNA IZQUIERDA (Fija en escritorio - Identidad Ejecutiva) -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-32 lg:h-fit mb-16 lg:mb-0 animate-luxury">
+            <div class="border-l-2 border-gold pl-8 py-2">
+                
+                <!-- Fotografía Profesional Ejecutiva (en color natural con microinteracción suave) -->
+                <div class="mb-8 w-44 h-56 bg-charcoal text-ivory flex flex-col items-center justify-center relative overflow-hidden group border border-gold/40 shadow-md">
+                    <img src="foto.jpeg" 
+                         alt="Germán O. Gómez-Fernández" 
+                         class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                         onerror="this.style.display='none'; document.getElementById('monogram-fallback').style.display='flex';">
+                    <div id="monogram-fallback" style="display: none;" class="w-full h-full flex flex-col items-center justify-center">
+                        <span class="signature-logo text-5xl text-ivory group-hover:scale-105 transition-transform duration-500">𝒢<span class="text-gold">ℱ</span></span>
+                        <span class="text-xs tracking-[0.2em] uppercase text-gold font-medium mt-2.5">Ph.D. · MSc · MBA</span>
+                    </div>
+                </div>
+
+                <p class="text-xs tracking-[0.22em] uppercase text-gold font-semibold mb-2.5">
+                    <span data-lang="en">Scientific & Executive Dossier</span>
+                    <span data-lang="es">Dossier Científico & Ejecutivo</span>
+                </p>
+                
+                <h1 class="font-serif text-4xl xl:text-5xl font-normal tracking-tight leading-[1.05] text-onyx dark:text-ivory mb-4">
+                    Germán O. <br><span class="italic font-normal">Gómez-Fernández</span>
+                </h1>
+
+                <p class="text-xs sm:text-[13px] tracking-[0.14em] uppercase text-platinum font-medium mb-6 leading-relaxed">
+                    <span data-lang="en">Environmental Agrobiology (Ph.D.) <br>Data Science (MSc) & MBA</span>
+                    <span data-lang="es">Agrobiología Ambiental (Ph.D.) <br>Data Science (MSc) & MBA</span>
+                </p>
+
+                <div class="text-sm leading-relaxed text-onyx/85 dark:text-ivory/80 mb-8 font-normal space-y-1.5">
+                    <p>
+                        <span data-lang="en">IMAB Institute · Public University of Navarre</span>
+                        <span data-lang="es">Instituto IMAB · Universidad Pública de Navarra</span>
+                    </p>
+                    <p>
+                        <span data-lang="en">Pamplona, Spain</span>
+                        <span data-lang="es">Pamplona, España</span>
+                    </p>
+                    <p class="pt-2">
+                        <a href="mailto:german.gomez@unavarra.es" class="luxury-link text-onyx dark:text-ivory font-medium">german.gomez@unavarra.es</a>
+                    </p>
+                    <p class="text-platinum text-xs pt-1 font-medium">+34 602 651 286</p>
+                </div>
+
+                <!-- Botón de Contacto Directo -->
+                <a href="mailto:german.gomez@unavarra.es?subject=Professional%20Inquiry%20/%20Contacto%20Profesional" 
+                   class="inline-block w-full text-center py-3.5 px-6 bg-onyx text-ivory dark:bg-ivory dark:text-onyx text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold dark:hover:bg-gold dark:hover:text-onyx transition-colors duration-300 shadow-sm mb-3">
+                    <span data-lang="en">Direct Inquiry</span>
+                    <span data-lang="es">Contactar Directamente</span>
+                </a>
+
+                <!-- Perfiles Oficiales Verificados -->
+                <div class="mt-8 pt-8 border-t border-stone dark:border-white/10 flex flex-col gap-3.5 text-xs tracking-[0.14em] uppercase text-platinum font-medium">
+                    <a href="https://www.linkedin.com/in/gomezfernandezgo/" target="_blank" class="luxury-link w-fit hover:text-onyx dark:hover:text-white">
+                        LinkedIn <span class="text-gold ml-1">↗</span>
+                    </a>
+                    <a href="https://orcid.org/0009-0003-3012-5007" target="_blank" class="luxury-link w-fit hover:text-onyx dark:hover:text-white">
+                        ORCID · 0009-0003-3012-5007 <span class="text-gold ml-1">↗</span>
+                    </a>
+                    <a href="https://doi.org/10.1093/jxb/eraf069" target="_blank" class="luxury-link w-fit hover:text-onyx dark:hover:text-white">
+                        Oxford Academic (JXB 2025) <span class="text-gold ml-1">↗</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- COLUMNA DERECHA (Desarrollo Editorial Bilingüe) -->
+        <main class="lg:col-span-8 space-y-24 animate-luxury" style="animation-delay: 0.15s;">
+
+            <!-- I. SÍNTESIS EJECUTIVA / EXECUTIVE PROFILE -->
+            <section id="perfil" class="scroll-mt-32">
+                <div class="flex items-baseline gap-4 mb-8 border-b border-stone dark:border-white/10 pb-4">
+                    <span class="section-number text-2xl sm:text-3xl">I.</span>
+                    <h2 class="text-sm sm:text-base tracking-[0.22em] uppercase font-semibold text-onyx dark:text-ivory">
+                        <span data-lang="en">Executive Synthesis</span>
+                        <span data-lang="es">Síntesis Ejecutiva</span>
+                    </h2>
+                </div>
+                
+                <p class="font-serif text-2xl md:text-3xl leading-relaxed font-normal text-onyx dark:text-ivory mb-8">
+                    <span data-lang="en">"At the convergence of symbiotic molecular biology, omics data science, and strategic R&D management."</span>
+                    <span data-lang="es">"En la convergencia entre la biología molecular de sistemas simbióticos, la ciencia de datos ómica y la dirección estratégica de proyectos de I+D."</span>
+                </p>
+
+                <!-- Texto en Inglés -->
+                <div data-lang="en" class="text-[15px] sm:text-base leading-relaxed text-onyx/90 dark:text-ivory/85 space-y-4 text-justify font-normal">
+                    <p>
+                        Agricultural Engineer and Researcher in <strong class="font-semibold text-onyx dark:text-ivory">Environmental Agrobiology and Plant Physiology</strong> at the Institute for Multidisciplinary Research in Applied Biology (IMAB) at the <strong class="font-semibold text-onyx dark:text-ivory">Public University of Navarre (UPNA)</strong>, with previous research appointments at the <strong class="font-semibold text-onyx dark:text-ivory">Spanish National Research Council (CSIC)</strong>, the <strong class="font-semibold text-onyx dark:text-ivory">University of Granada</strong>, and the private biotechnology R&D sector.
+                    </p>
+                    <p>
+                        My work dissects the molecular, transcriptional, and proteomic mechanisms governing <strong class="font-semibold text-onyx dark:text-ivory">biological nitrogen fixation</strong> and legume-rhizobium symbiosis, focusing on ethylene biosynthesis and early nitrate/ammonium signaling. I bridge advanced experimental biology—honed through fellowships at <strong class="font-semibold text-onyx dark:text-ivory">Wageningen University & Research</strong> and the <strong class="font-semibold text-onyx dark:text-ivory">University of Vienna</strong>—with quantitative modeling in <strong class="font-semibold text-onyx dark:text-ivory">Data Science (MSc)</strong> for multi-omics and transcriptomic integration (RNA-seq / Single-Cell), complemented by strategic business acumen (<strong class="font-semibold text-onyx dark:text-ivory">MBA</strong>).
+                    </p>
+                </div>
+
+                <!-- Texto en Español -->
+                <div data-lang="es" class="text-[15px] sm:text-base leading-relaxed text-onyx/90 dark:text-ivory/85 space-y-4 text-justify font-normal">
+                    <p>
+                        Ingeniero Agrónomo e investigador en <strong class="font-semibold text-onyx dark:text-ivory">Agrobiología Ambiental y Fisiología Vegetal</strong> en el Instituto de Investigación Multidisciplinar en Biología Aplicada (IMAB) de la <strong class="font-semibold text-onyx dark:text-ivory">Universidad Pública de Navarra (UPNA)</strong>, con trayectoria previa en el <strong class="font-semibold text-onyx dark:text-ivory">Consejo Superior de Investigaciones Científicas (CSIC)</strong>, la <strong class="font-semibold text-onyx dark:text-ivory">Universidad de Granada</strong> y el sector privado de I+D biotecnológico.
+                    </p>
+                    <p>
+                        Mi investigación disecciona los mecanismos moleculares, transcripcionales y proteómicos que regulan la <strong class="font-semibold text-onyx dark:text-ivory">fijación biológica de nitrógeno</strong> y la simbiosis leguminosa-rizobio, con especial énfasis en la biosíntesis de etileno y la señalización por nitrato y amonio. Combino el rigor experimental de laboratorio (entrenado en centros de excelencia como <strong class="font-semibold text-onyx dark:text-ivory">Wageningen University & Research</strong> y la <strong class="font-semibold text-onyx dark:text-ivory">Universidad de Viena</strong>) con una sólida formación cuantitativa en <strong class="font-semibold text-onyx dark:text-ivory">Ciencia de Datos (MSc Data Science)</strong> para el modelado bioinformático y transcriptómico (RNA-seq / Single-Cell), respaldado además por una visión ejecutiva de gestión empresarial (<strong class="font-semibold text-onyx dark:text-ivory">MBA</strong>).
+                    </p>
+                </div>
+
+                <!-- Competencias Clave -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4 gap-x-6 pt-8 mt-8 border-t border-stone dark:border-white/10 text-xs sm:text-[13px] tracking-[0.12em] uppercase font-medium text-onyx/90 dark:text-ivory/90">
+                    <div>
+                        <span class="text-gold mr-2 font-bold">—</span>
+                        <span data-lang="en">Transcriptomics & RNA-Seq</span>
+                        <span data-lang="es">Transcriptómica & RNA-Seq</span>
+                    </div>
+                    <div>
+                        <span class="text-gold mr-2 font-bold">—</span>
+                        <span data-lang="en">Biological N₂ Fixation</span>
+                        <span data-lang="es">Fijación Biológica de N₂</span>
+                    </div>
+                    <div>
+                        <span class="text-gold mr-2 font-bold">—</span>
+                        <span data-lang="en">Data Science & R / Python</span>
+                        <span data-lang="es">Data Science & R / Python</span>
+                    </div>
+                    <div>
+                        <span class="text-gold mr-2 font-bold">—</span>
+                        <span data-lang="en">Proteomics & EMSA</span>
+                        <span data-lang="es">Proteómica & EMSA</span>
+                    </div>
+                    <div>
+                        <span class="text-gold mr-2 font-bold">—</span>
+                        <span data-lang="en">Phylogenetics & Omics</span>
+                        <span data-lang="es">Filogenia & Bioinformática</span>
+                    </div>
+                    <div>
+                        <span class="text-gold mr-2 font-bold">—</span>
+                        <span data-lang="en">R&D Strategy (MBA)</span>
+                        <span data-lang="es">Gestión de I+D+i (MBA)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- II. TRAYECTORIA PROFESIONAL E INVESTIGADORA -->
+            <section id="trayectoria" class="scroll-mt-32">
+                <div class="flex items-baseline gap-4 mb-12 border-b border-stone dark:border-white/10 pb-4">
+                    <span class="section-number text-2xl sm:text-3xl">II.</span>
+                    <h2 class="text-sm sm:text-base tracking-[0.22em] uppercase font-semibold text-onyx dark:text-ivory">
+                        <span data-lang="en">Research & Professional Appointments</span>
+                        <span data-lang="es">Trayectoria Investigadora & Profesional</span>
+                    </h2>
+                </div>
+
+                <div class="space-y-14">
+                    
+                    <!-- Puesto 1: UPNA -->
+                    <div class="group grid md:grid-cols-4 gap-4 md:gap-8 items-baseline">
+                        <div class="text-xs sm:text-sm tracking-[0.16em] uppercase font-semibold text-platinum">
+                            2022 — 2026
+                        </div>
+                        <div class="md:col-span-3 border-l-2 border-stone dark:border-white/10 group-hover:border-gold pl-6 transition-colors duration-300">
+                            <h3 class="font-serif text-2xl font-medium text-onyx dark:text-ivory">
+                                <span data-lang="en">Predoctoral Researcher · Plant Physiology</span>
+                                <span data-lang="es">Investigador Predoctoral · Fisiología Vegetal</span>
+                            </h3>
+                            <p class="text-xs sm:text-[13px] tracking-[0.14em] uppercase font-semibold text-gold mt-1 mb-4">
+                                <span data-lang="en">Public University of Navarre (UPNA) · IMAB Institute · Pamplona, Spain</span>
+                                <span data-lang="es">Universidad Pública de Navarra (UPNA) · Instituto IMAB · Pamplona, España</span>
+                            </p>
+                            <p data-lang="en" class="text-[15px] leading-relaxed text-onyx/85 dark:text-ivory/80 mb-4 font-normal">
+                                Ph.D. research in Environmental Agrobiology focusing on the regulation of nitrogen-fixing symbiosis in the model legume <em>Medicago truncatula</em>, integrating molecular, functional, and bioinformatic approaches to dissect gene regulation during early symbiotic stages.
+                            </p>
+                            <p data-lang="es" class="text-[15px] leading-relaxed text-onyx/85 dark:text-ivory/80 mb-4 font-normal">
+                                Desarrollo de tesis doctoral en Agrobiología Ambiental centrada en la regulación de la simbiosis fijadora de nitrógeno en la leguminosa modelo <em>Medicago truncatula</em>, integrando aproximaciones moleculares, genéticas y bioinformáticas durante las etapas tempranas de infección simbiótica.
+                            </p>
+                            <ul data-lang="en" class="text-sm leading-relaxed text-onyx/80 dark:text-ivory/70 space-y-2.5 font-normal">
+                                <li>· Systematic genome-wide identification (Mtv5.0), nomenclature standardization, and phylogenetic analysis of <em>ACS</em> and <em>ACO</em> gene families across model and crop legumes.</li>
+                                <li>· Integration of bulk RNA-seq and single-cell/single-nucleus transcriptomic datasets, alongside identification of ammonium/nitrate transporters and regulators in nitrogen fixation.</li>
+                            </ul>
+                            <ul data-lang="es" class="text-sm leading-relaxed text-onyx/80 dark:text-ivory/70 space-y-2.5 font-normal">
+                                <li>· Identificación sistemática, anotación genómica (Mtv5.0) y análisis filogenético de las familias génicas <em>ACS</em> y <em>ACO</em> en leguminosas.</li>
+                                <li>· Integración de datos transcriptómicos masivos (RNA-seq y <em>single-cell/single-nucleus</em>) e identificación de reguladores en la inhibición de la fijación de nitrógeno mediada por amonio.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Puesto 2: CSIC -->
+                    <div class="group grid md:grid-cols-4 gap-4 md:gap-8 items-baseline">
+                        <div class="text-xs sm:text-sm tracking-[0.16em] uppercase font-semibold text-platinum">
+                            2021 — 2022
+                        </div>
+                        <div class="md:col-span-3 border-l-2 border-stone dark:border-white/10 group-hover:border-gold pl-6 transition-colors duration-300">
+                            <h3 class="font-serif text-2xl font-medium text-onyx dark:text-ivory">
+                                <span data-lang="en">JAE-Intro Research Assistant · Symbiotic Systems</span>
+                                <span data-lang="es">Investigador JAE-Intro · Microbiología y Sistemas Simbióticos</span>
+                            </h3>
+                            <p class="text-xs sm:text-[13px] tracking-[0.14em] uppercase font-semibold text-gold mt-1 mb-4">
+                                <span data-lang="en">Spanish National Research Council (EEZ-CSIC) · Granada, Spain</span>
+                                <span data-lang="es">Consejo Superior de Investigaciones Científicas (EEZ-CSIC) · Granada, España</span>
+                            </p>
+                            <p data-lang="en" class="text-[15px] leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                                Awarded the competitive CSIC JAE-Intro fellowship (JAEIntro-2021-EEZ01). Investigated the molecular basis of arbuscular mycorrhizal symbiosis in tomato (<em>Solanum lycopersicum</em>) and its physiological implications for plant performance and sustainable agriculture.
+                            </p>
+                            <p data-lang="es" class="text-[15px] leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                                Beca competitiva de introducción a la investigación (JAEIntro-2021-EEZ01). Investigación de las bases moleculares de las micorrizas arbusculares en cultivos de tomate (<em>Solanum lycopersicum</em>) y su impacto fisiológico en el rendimiento vegetal y la agricultura sostenible.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Puesto 3: UGR & I+D Privada -->
+                    <div class="group grid md:grid-cols-4 gap-4 md:gap-8 items-baseline">
+                        <div class="text-xs sm:text-sm tracking-[0.16em] uppercase font-semibold text-platinum">
+                            2020 — 2021
+                        </div>
+                        <div class="md:col-span-3 border-l-2 border-stone dark:border-white/10 group-hover:border-gold pl-6 transition-colors duration-300">
+                            <h3 class="font-serif text-2xl font-medium text-onyx dark:text-ivory">
+                                <span data-lang="en">Research Assistant & Applied R&D Bioassays</span>
+                                <span data-lang="es">Asistente de Investigación & Bioensayos Aplicados I+D</span>
+                            </h3>
+                            <p class="text-xs sm:text-[13px] tracking-[0.14em] uppercase font-semibold text-gold mt-1 mb-4">
+                                <span data-lang="en">University of Granada & DMC Research Center · Granada, Spain</span>
+                                <span data-lang="es">Universidad de Granada & DMC Research Center · Granada, España</span>
+                            </p>
+                            <p data-lang="en" class="text-[15px] leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                                Conducted research on <em>Rhizobium</em>-legume symbiosis, examining how polyamine oxidases (PAO) contribute to hydrogen peroxide (H₂O₂) dynamics and mutualistic signaling. Concurrently supported applied R&D bioassays at a private biotech center evaluating <em>Allium</em>-derived organosulfur compounds (PTSO) across plant pathology, animal productivity, and human clinical trials.
+                            </p>
+                            <p data-lang="es" class="text-[15px] leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                                Investigación en la simbiosis <em>Rhizobium</em>-leguminosa examinando el papel de las poliamina oxidasas (PAO) en la dinámica del peróxido de hidrógeno (H₂O₂) y señalización simbiótica. En paralelo, colaboración con el sector privado de I+D evaluando extractos fitoquímicos de <em>Allium</em> (compuestos organosulfurados como PTSO) frente a fitopatógenos, productividad animal y ensayos clínicos en salud humana.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- III. ESTANCIAS INTERNACIONALES Y ESPECIALIZACIÓN -->
+            <section id="estancias" class="scroll-mt-32">
+                <div class="flex items-baseline gap-4 mb-12 border-b border-stone dark:border-white/10 pb-4">
+                    <span class="section-number text-2xl sm:text-3xl">III.</span>
+                    <h2 class="text-sm sm:text-base tracking-[0.22em] uppercase font-semibold text-onyx dark:text-ivory">
+                        <span data-lang="en">International Research Fellowships</span>
+                        <span data-lang="es">Estancias Internacionales de Investigación</span>
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Viena -->
+                    <div class="border border-stone dark:border-white/10 p-8 hover:border-gold dark:hover:border-gold transition-colors duration-300 bg-black/[0.015] dark:bg-white/[0.02]">
+                        <span class="text-xs tracking-[0.18em] uppercase text-gold font-semibold block mb-2">
+                            <span data-lang="en">August — September 2024 · Vienna, Austria</span>
+                            <span data-lang="es">Agosto — Septiembre 2024 · Viena, Austria</span>
+                        </span>
+                        <h3 class="font-serif text-2xl font-medium mb-1 text-onyx dark:text-ivory">University of Vienna</h3>
+                        <p class="text-xs sm:text-[13px] tracking-[0.12em] uppercase text-platinum font-medium mb-4">
+                            Dept. Functional and Evolutionary Ecology · Prof. Dr. Stefanie Wienkoop
+                        </p>
+                        <p data-lang="en" class="text-sm leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                            Short-Term Scientific Mission funded by the <strong class="font-semibold text-onyx dark:text-ivory">ROOT-BENEFIT COST Action</strong> at the <em>Plant-Microsymbiont Interactions</em> laboratory. Advanced training in <strong class="font-semibold text-onyx dark:text-ivory">proteomics and phosphoproteomics</strong>, examining the effects of early nitrate signaling on wild-type <em>M. truncatula</em> and the ethylene-insensitive mutant (<em>skl</em>).
+                        </p>
+                        <p data-lang="es" class="text-sm leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                            Misión científica financiada por la acción europea <strong class="font-semibold text-onyx dark:text-ivory">COST Action ROOT-BENEFIT</strong> en el laboratorio <em>Plant-Microsymbiont Interactions</em>. Especialización en técnicas avanzadas de <strong class="font-semibold text-onyx dark:text-ivory">proteómica y fosfoproteémica</strong> analizando los efectos de la señalización temprana por nitrato en plantas silvestres y en el mutante insensible al etileno (<em>skl</em>).
+                        </p>
+                    </div>
+
+                    <!-- Wageningen -->
+                    <div class="border border-stone dark:border-white/10 p-8 hover:border-gold dark:hover:border-gold transition-colors duration-300 bg-black/[0.015] dark:bg-white/[0.02]">
+                        <span class="text-xs tracking-[0.18em] uppercase text-gold font-semibold block mb-2">
+                            <span data-lang="en">September — December 2022 · The Netherlands</span>
+                            <span data-lang="es">Septiembre — Diciembre 2022 · Países Bajos</span>
+                        </span>
+                        <h3 class="font-serif text-2xl font-medium mb-1 text-onyx dark:text-ivory">Wageningen University & Research</h3>
+                        <p class="text-xs sm:text-[13px] tracking-[0.12em] uppercase text-platinum font-medium mb-4">
+                            Laboratory of Molecular Biology · Dr. Wouter Kohlen
+                        </p>
+                        <p data-lang="en" class="text-sm leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                            Three-month doctoral fellowship at the <em>Cluster Plant Developmental Biology</em> establishing <strong class="font-semibold text-onyx dark:text-ivory">Electrophoretic Mobility Shift Assay (EMSA)</strong> workflows and <strong class="font-semibold text-onyx dark:text-ivory">Golden Gate</strong> cloning to test transcription factor–DNA interactions regulating ethylene production at early symbiosis stages.
+                        </p>
+                        <p data-lang="es" class="text-sm leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                            Estancia doctoral de tres meses en el <em>Cluster Plant Developmental Biology</em> estableciendo flujos de trabajo de <strong class="font-semibold text-onyx dark:text-ivory">Electrophoretic Mobility Shift Assays (EMSA)</strong> y clonación <strong class="font-semibold text-onyx dark:text-ivory">Golden Gate</strong> para evaluar interacciones entre factores de transcripción y ADN en la biosíntesis de etileno durante la simbiosis temprana.
+                        </p>
+                    </div>
+
+                    <!-- AIT Tulln -->
+                    <div class="border border-stone dark:border-white/10 p-8 hover:border-gold dark:hover:border-gold transition-colors duration-300 md:col-span-2 bg-black/[0.015] dark:bg-white/[0.02]">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <span class="text-xs tracking-[0.18em] uppercase text-gold font-semibold block mb-1">
+                                    <span data-lang="en">July 2024 · Tulln, Austria</span>
+                                    <span data-lang="es">Julio 2024 · Tulln, Austria</span>
+                                </span>
+                                <h3 class="font-serif text-2xl font-medium text-onyx dark:text-ivory">AIT Austrian Institute of Technology</h3>
+                                <p data-lang="en" class="text-sm text-onyx/85 dark:text-ivory/80 font-normal mt-1">
+                                    Specialized Training Course & Workshop: <em>"Advanced Microscopy Techniques for Plant-Microbe Interaction Analysis"</em> (Dr. Stéphane Compant & Dr. Ursula Sauer).
+                                </p>
+                                <p data-lang="es" class="text-sm text-onyx/85 dark:text-ivory/80 font-normal mt-1">
+                                    Formación intensiva especializada: <em>"Advanced Microscopy Techniques for Plant-Microbe Interaction Analysis"</em> (Dr. Stéphane Compant & Dr. Ursula Sauer).
+                                </p>
+                            </div>
+                            <span class="text-xs tracking-[0.15em] uppercase text-platinum shrink-0 border border-stone dark:border-white/10 px-3.5 py-1.5 font-medium">
+                                <span data-lang="en">Advanced Microscopy</span>
+                                <span data-lang="es">Microscopía Avanzada</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- IV. PUBLICACIONES CIENTÍFICAS (PEER-REVIEWED) -->
+            <section id="publicaciones" class="scroll-mt-32">
+                <div class="flex items-baseline gap-4 mb-12 border-b border-stone dark:border-white/10 pb-4">
+                    <span class="section-number text-2xl sm:text-3xl">IV.</span>
+                    <h2 class="text-sm sm:text-base tracking-[0.22em] uppercase font-semibold text-onyx dark:text-ivory">
+                        <span data-lang="en">Selected Peer-Reviewed Publications (JCR)</span>
+                        <span data-lang="es">Publicaciones Científicas Seleccionadas (JCR)</span>
+                    </h2>
+                </div>
+
+                <div class="divide-y divide-stone dark:divide-white/10">
+                    
+                    <!-- Pub 1: JXB 2025 -->
+                    <article class="py-8 first:pt-0 group flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="max-w-2xl">
+                            <span class="text-xs tracking-[0.16em] uppercase text-gold font-semibold block mb-1.5">
+                                Journal of Experimental Botany · Vol. 76(10), 2659–2672 · 2025
+                            </span>
+                            <h3 class="font-serif text-2xl font-medium group-hover:text-gold transition-colors leading-snug text-onyx dark:text-ivory">
+                                Ethylene biosynthesis in legumes: gene identification and expression during early symbiotic stages
+                            </h3>
+                            <p class="text-sm text-onyx/80 dark:text-ivory/70 mt-2 font-normal">
+                                <strong class="font-semibold text-onyx dark:text-ivory">Gómez-Fernández, G. O.</strong>, Van Velzen, R., Mun, J., Cook, D. R., Kohlen, W., & Larrainzar, E.
+                            </p>
+                        </div>
+                        <a href="https://doi.org/10.1093/jxb/eraf069" target="_blank" class="text-xs tracking-[0.16em] uppercase font-medium luxury-link self-start md:self-center shrink-0 text-platinum hover:text-onyx dark:hover:text-white">
+                            DOI: 10.1093/jxb ↗
+                        </a>
+                    </article>
+
+                    <!-- Pub 2: Nutrients 2024 -->
+                    <article class="py-8 group flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="max-w-2xl">
+                            <span class="text-xs tracking-[0.16em] uppercase text-gold font-semibold block mb-1.5">
+                                Nutrients · Vol. 16(16), 2811 · 2024
+                            </span>
+                            <h3 class="font-serif text-2xl font-medium group-hover:text-gold transition-colors leading-snug text-onyx dark:text-ivory">
+                                LDL-Cholesterol-Lowering effects of a dietary supplement containing onion and garlic extract used in healthy volunteers
+                            </h3>
+                            <p class="text-sm text-onyx/80 dark:text-ivory/70 mt-2 font-normal">
+                                Vezza, T., Guillamón, E., García-García, J., Baños, A., Mut-Salud, N., García-López, J. D., <strong class="font-semibold text-onyx dark:text-ivory">Gómez-Fernández, G. O.</strong>, Rodriguez-Nogales, A., Gálvez, J., & Fonollá, J.
+                            </p>
+                        </div>
+                        <a href="https://doi.org/10.3390/nu16162811" target="_blank" class="text-xs tracking-[0.16em] uppercase font-medium luxury-link self-start md:self-center shrink-0 text-platinum hover:text-onyx dark:hover:text-white">
+                            DOI: 10.3390/nu ↗
+                        </a>
+                    </article>
+
+                    <!-- Pub 3: Foods 2024 -->
+                    <article class="py-8 group flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="max-w-2xl">
+                            <span class="text-xs tracking-[0.16em] uppercase text-gold font-semibold block mb-1.5">
+                                Foods · Vol. 13(17), 2718 · 2024
+                            </span>
+                            <h3 class="font-serif text-2xl font-medium group-hover:text-gold transition-colors leading-snug text-onyx dark:text-ivory">
+                                Alliaceae-Derived Supplementation Improves the Severity of COVID-19 Symptoms among Elderly Nursing Home Residents
+                            </h3>
+                            <p class="text-sm text-onyx/80 dark:text-ivory/70 mt-2 font-normal">
+                                Vázquez-Blanquiño, A., Pérez-Rodríguez, L., Alberola-Romano, A., Martínez-Pérez, M., Baños, A., <strong class="font-semibold text-onyx dark:text-ivory">Gómez-Fernández, G. O.</strong>, Gracián, C., Fonollá, J., & García, F.
+                            </p>
+                        </div>
+                        <a href="https://doi.org/10.3390/foods13172718" target="_blank" class="text-xs tracking-[0.16em] uppercase font-medium luxury-link self-start md:self-center shrink-0 text-platinum hover:text-onyx dark:hover:text-white">
+                            DOI: 10.3390/foods ↗
+                        </a>
+                    </article>
+
+                    <!-- Pub 4: Plants 2023 -->
+                    <article class="py-8 group flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="max-w-2xl">
+                            <span class="text-xs tracking-[0.16em] uppercase text-gold font-semibold block mb-1.5">
+                                Plants · Vol. 12(8), 1608 · 2023
+                            </span>
+                            <h3 class="font-serif text-2xl font-medium group-hover:text-gold transition-colors leading-snug text-onyx dark:text-ivory">
+                                Reduction in the Use of Some Herbicides Favors Nitrogen Fixation Efficiency in Phaseolus vulgaris and Medicago sativa
+                            </h3>
+                            <p class="text-sm text-onyx/80 dark:text-ivory/70 mt-2 font-normal">
+                                Paniagua-López, M., Jiménez-Pelayo, C., <strong class="font-semibold text-onyx dark:text-ivory">Gómez-Fernández, G. O.</strong>, Herrera-Cervera, J. A., & López-Gómez, M.
+                            </p>
+                        </div>
+                        <a href="https://doi.org/10.3390/plants12081608" target="_blank" class="text-xs tracking-[0.16em] uppercase font-medium luxury-link self-start md:self-center shrink-0 text-platinum hover:text-onyx dark:hover:text-white">
+                            DOI: 10.3390/plants ↗
+                        </a>
+                    </article>
+
+                    <!-- Pub 5: Animal Science Proceedings 2022 -->
+                    <article class="py-8 group flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="max-w-2xl">
+                            <span class="text-xs tracking-[0.16em] uppercase text-gold font-semibold block mb-1.5">
+                                Animal - Science Proceedings · Vol. 13(3), 427–428 · 2022
+                            </span>
+                            <h3 class="font-serif text-2xl font-medium group-hover:text-gold transition-colors leading-snug text-onyx dark:text-ivory">
+                                Propyl propane thiosulfonate onion derivate improves laying hen performance after the production peak
+                            </h3>
+                            <p class="text-sm text-onyx/80 dark:text-ivory/70 mt-2 font-normal">
+                                Aguinaga-Casañas, M., <strong class="font-semibold text-onyx dark:text-ivory">Gómez-Fernández, G. O.</strong>, Guillamón, E., Ariza, J., & Baños, A.
+                            </p>
+                        </div>
+                        <a href="https://doi.org/10.1016/j.anscip.2022.07.159" target="_blank" class="text-xs tracking-[0.16em] uppercase font-medium luxury-link self-start md:self-center shrink-0 text-platinum hover:text-onyx dark:hover:text-white">
+                            DOI: 10.1016/anscip ↗
+                        </a>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- V. FORMACIÓN ACADÉMICA MULTIDISCIPLINAR -->
+            <section id="academia" class="scroll-mt-32">
+                <div class="flex items-baseline gap-4 mb-12 border-b border-stone dark:border-white/10 pb-4">
+                    <span class="section-number text-2xl sm:text-3xl">V.</span>
+                    <h2 class="text-sm sm:text-base tracking-[0.22em] uppercase font-semibold text-onyx dark:text-ivory">
+                        <span data-lang="en">Academic Background</span>
+                        <span data-lang="es">Formación Académica Superior</span>
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                    
+                    <div class="border-l-2 border-gold pl-5">
+                        <span class="text-xs tracking-[0.18em] uppercase text-gold font-semibold block mb-1.5">2022 — 2026</span>
+                        <h3 class="font-serif text-2xl font-medium text-onyx dark:text-ivory">
+                            <span data-lang="en">Ph.D. in Environmental Agrobiology</span>
+                            <span data-lang="es">Doctorado (Ph.D.) en Agrobiología Ambiental</span>
+                        </h3>
+                        <p class="text-xs sm:text-[13px] tracking-[0.12em] uppercase text-platinum font-medium mt-1.5">
+                            <span data-lang="en">Public University of Navarre (UPNA) · Spain</span>
+                            <span data-lang="es">Universidad Pública de Navarra (UPNA) · España</span>
+                        </p>
+                        <p class="text-sm text-onyx/80 dark:text-ivory/75 mt-2.5 font-normal">
+                            <span data-lang="en">Molecular and functional regulation of nitrogen-fixing symbiosis and ethylene biosynthesis in legumes.</span>
+                            <span data-lang="es">Regulación molecular y funcional de la simbiosis fijadora de nitrógeno y biosíntesis de etileno en leguminosas.</span>
+                        </p>
+                    </div>
+
+                    <div class="border-l-2 border-gold pl-5">
+                        <span class="text-xs tracking-[0.18em] uppercase text-gold font-semibold block mb-1.5">2024 — 2026</span>
+                        <h3 class="font-serif text-2xl font-medium text-onyx dark:text-ivory">
+                            <span data-lang="en">MSc in Data Science</span>
+                            <span data-lang="es">MSc in Data Science (Ciencia de Datos)</span>
+                        </h3>
+                        <p class="text-xs sm:text-[13px] tracking-[0.12em] uppercase text-platinum font-medium mt-1.5">
+                            <span data-lang="en">Open University of Catalonia (UOC) · Spain</span>
+                            <span data-lang="es">Universitat Oberta de Catalunya (UOC) · España</span>
+                        </p>
+                        <p class="text-sm text-onyx/80 dark:text-ivory/75 mt-2.5 font-normal">
+                            <span data-lang="en">Quantitative modeling, machine learning, and bioinformatic integration of omics-driven questions.</span>
+                            <span data-lang="es">Modelado estadístico avanzado, machine learning e integración bioinformática de datos multi-ómicos.</span>
+                        </p>
+                    </div>
+
+                    <div class="border-l-2 border-stone dark:border-white/15 pl-5">
+                        <span class="text-xs tracking-[0.18em] uppercase text-platinum font-semibold block mb-1.5">2023</span>
+                        <h3 class="font-serif text-2xl font-medium text-onyx dark:text-ivory">
+                            <span data-lang="en">MBA · MSc Business Economics & Management</span>
+                            <span data-lang="es">MBA · MSc Business Economics & Management</span>
+                        </h3>
+                        <p class="text-xs sm:text-[13px] tracking-[0.12em] uppercase text-platinum font-medium mt-1.5">
+                            <span data-lang="en">University of Granada (UGR) · Spain</span>
+                            <span data-lang="es">Universidad de Granada (UGR) · España</span>
+                        </p>
+                        <p class="text-sm text-onyx/80 dark:text-ivory/75 mt-2.5 font-normal">
+                            <span data-lang="en">Strategic management, business economics, and technology transfer.</span>
+                            <span data-lang="es">Dirección estratégica, gestión económica y transferencia tecnológica.</span>
+                        </p>
+                    </div>
+
+                    <div class="border-l-2 border-stone dark:border-white/15 pl-5">
+                        <span class="text-xs tracking-[0.18em] uppercase text-platinum font-semibold block mb-1.5">2021</span>
+                        <h3 class="font-serif text-2xl font-medium text-onyx dark:text-ivory">
+                            <span data-lang="en">MSc in Agricultural Biology & Aquaculture</span>
+                            <span data-lang="es">MSc en Biología Agraria y Acuicultura</span>
+                        </h3>
+                        <p class="text-xs sm:text-[13px] tracking-[0.12em] uppercase text-platinum font-medium mt-1.5">
+                            <span data-lang="en">University of Granada (UGR) · Spain</span>
+                            <span data-lang="es">Universidad de Granada (UGR) · España</span>
+                        </p>
+                        <p class="text-sm text-onyx/80 dark:text-ivory/75 mt-2.5 font-normal">
+                            <span data-lang="en">Master of Science in Advances in Agricultural Biology and Aquaculture.</span>
+                            <span data-lang="es">Máster Oficial en Avances en Biología Agraria y Acuicultura.</span>
+                        </p>
+                    </div>
+
+                    <div class="border-l-2 border-stone dark:border-white/15 pl-5 md:col-span-2">
+                        <span class="text-xs tracking-[0.18em] uppercase text-platinum font-semibold block mb-1.5">
+                            <span data-lang="en">2020 · Undergraduate & Specialized Training</span>
+                            <span data-lang="es">2020 · Grado & Formación Continua</span>
+                        </span>
+                        <h3 class="font-serif text-2xl font-medium text-onyx dark:text-ivory">
+                            <span data-lang="en">BSc in Agricultural Engineering</span>
+                            <span data-lang="es">Grado en Ingeniería Agronómica (BSc Agricultural Engineering)</span>
+                        </h3>
+                        <p class="text-xs sm:text-[13px] tracking-[0.12em] uppercase text-platinum font-medium mt-1.5">
+                            <span data-lang="en">National University of Colombia · Bogotá, Colombia</span>
+                            <span data-lang="es">Universidad Nacional de Colombia · Sede Bogotá</span>
+                        </p>
+                        <p class="text-sm text-onyx/80 dark:text-ivory/75 mt-2.5 font-normal">
+                            <span data-lang="en">Focus on plant pathology and plant-microbe interactions. Certified in <em>Multivariate Methods for Biological Data Analysis in R</em> (40h, 2022).</span>
+                            <span data-lang="es">Especialización en Fitopatología e interacciones planta-microorganismo. Certificado en <em>Métodos Multivariados para Análisis de Datos Biológicos en R</em> (40h, 2022).</span>
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- VI. CONGRESOS INTERNACIONALES Y PROYECTOS FINANCIADOS -->
+            <section id="congresos" class="scroll-mt-32">
+                <div class="flex items-baseline gap-4 mb-12 border-b border-stone dark:border-white/10 pb-4">
+                    <span class="section-number text-2xl sm:text-3xl">VI.</span>
+                    <h2 class="text-sm sm:text-base tracking-[0.22em] uppercase font-semibold text-onyx dark:text-ivory">
+                        <span data-lang="en">International Congresses & Competitive Grants</span>
+                        <span data-lang="es">Congresos Internacionales & Financiación Competitiva</span>
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    
+                    <!-- Comunicaciones en Congresos -->
+                    <div>
+                        <h3 class="text-sm tracking-[0.18em] uppercase text-gold mb-6 font-semibold">
+                            <span data-lang="en">Conference Contributions</span>
+                            <span data-lang="es">Comunicaciones en Congresos</span>
+                        </h3>
+                        <ul class="space-y-5 text-sm leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                            <li class="border-b border-stone/50 dark:border-white/5 pb-3.5">
+                                <strong class="font-semibold text-onyx dark:text-ivory block mb-1">
+                                    <span data-lang="en">Plant Biology Europe Congress (2025) · Budapest, Hungary</span>
+                                    <span data-lang="es">Plant Biology Europe Congress (2025) · Budapest, Hungría</span>
+                                </strong>
+                                <em>Genome-wide identification and expression profiling of ammonium and nitrate transporters in M. truncatula under nitrogen-fixing symbiotic conditions.</em>
+                            </li>
+                            <li class="border-b border-stone/50 dark:border-white/5 pb-3.5">
+                                <strong class="font-semibold text-onyx dark:text-ivory block mb-1">
+                                    <span data-lang="en">XIX SEFIN Congress - BeMiPlant (2024) · Salamanca, Spain</span>
+                                    <span data-lang="es">XIX SEFIN Congress - BeMiPlant (2024) · Salamanca, España</span>
+                                </strong>
+                                <em>New regulators involved in the ammonium-mediated inhibition of nitrogen fixation in Medicago truncatula.</em>
+                            </li>
+                            <li class="border-b border-stone/50 dark:border-white/5 pb-3.5">
+                                <strong class="font-semibold text-onyx dark:text-ivory block mb-1">
+                                    <span data-lang="en">1st SEBP Biotic Interactions Meeting (2024) · Granada, Spain</span>
+                                    <span data-lang="es">I Reunión Interacciones Bióticas SEBP (2024) · Granada, España</span>
+                                </strong>
+                                <span data-lang="en"><em>Oral Presentation at Estación Experimental del Zaidín (CSIC).</em></span>
+                                <span data-lang="es"><em>Comunicación Oral en la Estación Experimental del Zaidín (CSIC).</em></span>
+                            </li>
+                            <li class="border-b border-stone/50 dark:border-white/5 pb-3.5">
+                                <strong class="font-semibold text-onyx dark:text-ivory block mb-1">
+                                    <span data-lang="en">15th European Nitrogen Fixation Conference (2023) · Naples, Italy</span>
+                                    <span data-lang="es">15th European Nitrogen Fixation Conference (2023) · Nápoles, Italia</span>
+                                </strong>
+                                <em>Ethylene biosynthesis in legumes: A simple pathway with many actors.</em>
+                            </li>
+                            <li class="border-b border-stone/50 dark:border-white/5 pb-3.5">
+                                <strong class="font-semibold text-onyx dark:text-ivory block mb-1">
+                                    <span data-lang="en">INFARMA European Pharmacy Meeting (2023) · Barcelona, Spain</span>
+                                    <span data-lang="es">INFARMA Encuentro Europeo de Farmacia (2023) · Barcelona, España</span>
+                                </strong>
+                                <em>Alliaceae extract mixture decreases COVID-19 symptoms in elderly nursing home residents.</em>
+                            </li>
+                            <li>
+                                <strong class="font-semibold text-onyx dark:text-ivory block mb-1">
+                                    <span data-lang="en">XVIII SEFIN Congress (2022) · Oeiras, Portugal</span>
+                                    <span data-lang="es">XVIII SEFIN Congress (2022) · Oeiras, Portugal</span>
+                                </strong>
+                                <span data-lang="en"><em>4 scientific contributions on ethylene biosynthesis, nodule development (skl mutant), polyamine oxidation, and symbiotic efficiency.</em></span>
+                                <span data-lang="es"><em>4 comunicaciones científicas sobre biosíntesis de etileno, desarrollo nodular (mutante skl), oxidación de poliaminas y eficiencia simbiótica.</em></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Proyectos y Becas -->
+                    <div>
+                        <h3 class="text-sm tracking-[0.18em] uppercase text-gold mb-6 font-semibold">
+                            <span data-lang="en">R&D Projects & Competitive Fellowships</span>
+                            <span data-lang="es">Proyectos de I+D & Becas Competitivas</span>
+                        </h3>
+                        <ul class="space-y-5 text-sm leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                            <li class="border-b border-stone/50 dark:border-white/5 pb-3.5">
+                                <span class="text-xs tracking-[0.14em] uppercase text-platinum font-medium block mb-1">
+                                    <span data-lang="en">Predoctoral Fellowship · Res. N° 2568/2021</span>
+                                    <span data-lang="es">Contrato Predoctoral · Res. N° 2568/2021</span>
+                                </span>
+                                <strong class="font-semibold text-onyx dark:text-ivory">
+                                    <span data-lang="en">Public University of Navarre & Ramón y Cajal Program</span>
+                                    <span data-lang="es">Universidad Pública de Navarra & Programa Ramón y Cajal</span>
+                                </strong>
+                            </li>
+                            <li class="border-b border-stone/50 dark:border-white/5 pb-3.5">
+                                <span class="text-xs tracking-[0.14em] uppercase text-platinum font-medium block mb-1">
+                                    <span data-lang="en">COST Action European Mission · 2024</span>
+                                    <span data-lang="es">COST Action European Mission · 2024</span>
+                                </span>
+                                <strong class="font-semibold text-onyx dark:text-ivory">ROOT-BENEFIT Short-Term Scientific Mission (University of Vienna)</strong>
+                            </li>
+                            <li class="border-b border-stone/50 dark:border-white/5 pb-3.5">
+                                <span class="text-xs tracking-[0.14em] uppercase text-platinum font-medium block mb-1">
+                                    <span data-lang="en">Spanish Ministry of Science and Innovation · ERDF</span>
+                                    <span data-lang="es">Ministerio de Ciencia e Innovación · FEDER</span>
+                                </span>
+                                <strong class="font-semibold text-onyx dark:text-ivory">Grants PID2021-122740OB-100 & RYC2018-023867-I</strong>
+                            </li>
+                            <li class="border-b border-stone/50 dark:border-white/5 pb-3.5">
+                                <span class="text-xs tracking-[0.14em] uppercase text-platinum font-medium block mb-1">
+                                    <span data-lang="en">Government of Navarre · Collaborative Grant</span>
+                                    <span data-lang="es">Gobierno de Navarra · Proyecto Colaborativo</span>
+                                </span>
+                                <strong class="font-semibold text-onyx dark:text-ivory">Project PC112-113 (LEGUSI)</strong>
+                            </li>
+                            <li>
+                                <span class="text-xs tracking-[0.14em] uppercase text-platinum font-medium block mb-1">
+                                    <span data-lang="en">Spanish National Research Council (CSIC)</span>
+                                    <span data-lang="es">Consejo Superior de Investigaciones Científicas (CSIC)</span>
+                                </span>
+                                <strong class="font-semibold text-onyx dark:text-ivory">JAE-Intro Fellowship (JAEIntro-2021-EEZ01)</strong>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PIE DE PÁGINA -->
+            <footer class="pt-16 border-t border-stone dark:border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 text-xs text-platinum">
+                <div>
+                    <p class="font-serif italic text-xl sm:text-2xl text-onyx dark:text-ivory mb-2">
+                        <span data-lang="en">For scientific collaborations, Data Science initiatives, or biotech consulting:</span>
+                        <span data-lang="es">Para colaboraciones científicas, proyectos de Data Science o consultoría biotecnológica:</span>
+                    </p>
+                    <a href="mailto:german.gomez@unavarra.es" class="luxury-link text-gold tracking-[0.16em] uppercase text-xs sm:text-sm font-semibold">
+                        german.gomez@unavarra.es
+                    </a>
+                </div>
+                <div class="text-xs tracking-[0.18em] uppercase text-platinum text-right font-medium">
+                    © 2026 Germán O. Gómez-Fernández<br>
+                    <span class="text-gold">
+                        <span data-lang="en">Pamplona · Spain</span>
+                        <span data-lang="es">Pamplona · España</span>
+                    </span>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+</body>
+</html>
