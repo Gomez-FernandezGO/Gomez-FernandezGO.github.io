@@ -150,6 +150,46 @@
         .animate-luxury {
             animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+    
+        /* Estilos Pestañas Globales (Dossier vs Second Brain) */
+        .active-tab-header {
+            background-color: #0A0A0A;
+            color: #FAF8F5 !important;
+            font-weight: 600;
+        }
+        .dark .active-tab-header {
+            background-color: var(--color-gold);
+            color: #0A0A0A !important;
+            font-weight: 600;
+        }
+
+        .main-tab-btn.active-tab {
+            background-color: #0A0A0A;
+            color: #FAF8F5 !important;
+            font-weight: 600;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .dark .main-tab-btn.active-tab {
+            background-color: var(--color-gold);
+            color: #0A0A0A !important;
+            font-weight: 600;
+        }
+
+        .cluster-filter-btn.active-filter {
+            background-color: #0A0A0A;
+            color: #FAF8F5;
+            font-weight: 600;
+        }
+        .dark .cluster-filter-btn.active-filter {
+            background-color: var(--color-gold);
+            color: #0A0A0A;
+            font-weight: 600;
+        }
+
+        .tab-view {
+            animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
     </style>
 
     <script>
@@ -202,31 +242,45 @@
                 </span>
             </a>
 
-            <!-- Contenedor Derecho: Navegación + Selectores (aleja I. Profile del logo) -->
-            <div class="flex items-center space-x-8 xl:space-x-10">
-                <!-- Navegación Desktop -->
-                <nav class="hidden xl:flex items-center space-x-6 xl:space-x-7 text-xs tracking-[0.14em] uppercase font-medium text-onyx/80 dark:text-ivory/80">
-                    <a href="#perfil" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+            <!-- Contenedor Derecho: Pestañas Principales + Navegación + Selectores -->
+            <div class="flex items-center space-x-6 xl:space-x-8">
+                <!-- Selector de Pestañas Global en Cabecera -->
+                <div class="flex items-center border border-stone dark:border-white/20 p-0.5 bg-black/[0.03] dark:bg-white/5 tracking-wider uppercase text-xs shrink-0" role="tablist">
+                    <button type="button" onclick="switchTab('dossier')" id="tab-nav-dossier" 
+                            class="header-tab-btn active-tab-header px-3 py-1 font-semibold transition-all cursor-pointer">
+                        <span data-lang="en">✦ Dossier</span>
+                        <span data-lang="es">✦ Dossier</span>
+                    </button>
+                    <button type="button" onclick="switchTab('brain')" id="tab-nav-brain" 
+                            class="header-tab-btn px-3 py-1 font-medium transition-all cursor-pointer text-platinum hover:text-gold">
+                        <span data-lang="en">◈ Second Brain</span>
+                        <span data-lang="es">◈ Segundo Cerebro</span>
+                    </button>
+                </div>
+
+                <!-- Navegación Desktop de Secciones (Vinculada al Dossier) -->
+                <nav id="header-section-nav" class="hidden 2xl:flex items-center space-x-6 text-xs tracking-[0.14em] uppercase font-medium text-onyx/80 dark:text-ivory/80 transition-all duration-300">
+                    <a href="#perfil" onclick="switchTab('dossier')" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
                         <span data-lang="en">I. Profile</span>
                         <span data-lang="es">I. Síntesis</span>
                     </a>
-                    <a href="#trayectoria" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                    <a href="#trayectoria" onclick="switchTab('dossier')" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
                         <span data-lang="en">II. Experience</span>
                         <span data-lang="es">II. Trayectoria</span>
                     </a>
-                    <a href="#estancias" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                    <a href="#estancias" onclick="switchTab('dossier')" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
                         <span data-lang="en">III. Fellowships</span>
                         <span data-lang="es">III. Internacional</span>
                     </a>
-                    <a href="#publicaciones" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                    <a href="#publicaciones" onclick="switchTab('dossier')" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
                         <span data-lang="en">IV. Publications</span>
                         <span data-lang="es">IV. Publicaciones</span>
                     </a>
-                    <a href="#academia" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                    <a href="#academia" onclick="switchTab('dossier')" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
                         <span data-lang="en">V. Education</span>
                         <span data-lang="es">V. Academia</span>
                     </a>
-                    <a href="#congresos" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
+                    <a href="#congresos" onclick="switchTab('dossier')" class="luxury-link hover:text-onyx dark:hover:text-white transition-colors">
                         <span data-lang="en">VI. Congresses & Grants</span>
                         <span data-lang="es">VI. Congresos & I+D</span>
                     </a>
@@ -318,7 +372,6 @@
                     <p class="pt-2">
                         <a href="mailto:german.gomez@unavarra.es" class="luxury-link text-onyx dark:text-ivory font-medium">german.gomez@unavarra.es</a>
                     </p>
-                    <p class="text-platinum text-xs pt-1 font-medium">+34 602 651 286</p>
                 </div>
 
                 <!-- Botón de Contacto Directo -->
@@ -344,7 +397,42 @@
         </aside>
 
         <!-- COLUMNA DERECHA (Desarrollo Editorial Bilingüe) -->
-        <main class="lg:col-span-8 space-y-24 animate-luxury" style="animation-delay: 0.15s;">
+                <!-- COLUMNA DERECHA (Desarrollo Editorial Bilingüe & Pestañas) -->
+        <main class="lg:col-span-8 animate-luxury" style="animation-delay: 0.15s;">
+
+            <!-- BARRA DE PESTAÑAS PRINCIPALES (Dossier vs Second Brain) -->
+            <div class="border-b border-stone dark:border-white/10 pb-6 mb-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="inline-flex p-1 border border-stone dark:border-white/20 bg-stone/20 dark:bg-white/5 tracking-wider uppercase text-xs sm:text-sm">
+                    <button type="button" onclick="switchTab('dossier')" id="main-tab-dossier" 
+                            class="main-tab-btn active-tab px-5 py-2.5 font-semibold transition-all cursor-pointer flex items-center gap-2">
+                        <span>✦</span>
+                        <span data-lang="en">Executive Dossier & CV</span>
+                        <span data-lang="es">Dossier Ejecutivo & CV</span>
+                    </button>
+                    <button type="button" onclick="switchTab('brain')" id="main-tab-brain" 
+                            class="main-tab-btn px-5 py-2.5 font-medium transition-all cursor-pointer flex items-center gap-2 text-platinum hover:text-gold">
+                        <span>◈</span>
+                        <span data-lang="en">Second Brain & Research Graph</span>
+                        <span data-lang="es">Segundo Cerebro & Red I+D</span>
+                    </button>
+                </div>
+                
+                <div class="text-[11px] uppercase tracking-[0.16em] text-platinum font-medium">
+                    <span id="tab-indicator-dossier" class="flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-gold"></span>
+                        <span data-lang="en">Comprehensive Career Record</span>
+                        <span data-lang="es">Historial Académico Completo</span>
+                    </span>
+                    <span id="tab-indicator-brain" class="hidden flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span data-lang="en">14 Interconnected Domains · Multi-Omics</span>
+                        <span data-lang="es">14 Dominios Interconectados · Multi-Ómica</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- VISTA 1: DOSSIER EJECUTIVO (SECCIONES I A VI) -->
+            <div id="view-dossier" class="tab-view space-y-24">
 
             <!-- I. SÍNTESIS EJECUTIVA / EXECUTIVE PROFILE -->
             <section id="perfil" class="scroll-mt-32">
@@ -900,7 +988,169 @@
                 </div>
             </section>
 
-            <!-- PIE DE PÁGINA -->
+                        </div> <!-- Fin #view-dossier -->
+
+            <!-- VISTA 2: SECOND BRAIN / RED DE INVESTIGACIÓN INTERACTIVA -->
+            <div id="view-brain" class="tab-view hidden space-y-12">
+                
+                <!-- Encabezado del Second Brain -->
+                <div class="border-b border-stone dark:border-white/10 pb-8">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-2 h-2 rounded-full bg-gold"></span>
+                        <span class="text-xs tracking-[0.22em] uppercase font-semibold text-gold">
+                            <span data-lang="en">Interactive Research Interactome</span>
+                            <span data-lang="es">Interactoma de Investigación Interactivo</span>
+                        </span>
+                    </div>
+                    
+                    <h2 class="font-serif text-3xl sm:text-4xl font-normal text-onyx dark:text-ivory leading-tight mb-4">
+                        <span data-lang="en">Second Brain: Symbiosis, Ethylene & Multi-Omics</span>
+                        <span data-lang="es">Segundo Cerebro: Simbiosis, Etileno & Multi-Ómica</span>
+                    </h2>
+
+                    <p data-lang="en" class="text-[15px] leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal max-w-3xl">
+                        An interactive knowledge interactome mapping the core pillars of my research: from transcriptional control of ethylene biosynthesis and early rhizobial colonization to single-cell multi-omics, plant phosphoproteomics, and applied translational biotechnology.
+                    </p>
+                    <p data-lang="es" class="text-[15px] leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal max-w-3xl">
+                        Un mapa de conocimiento interactivo que desglosa los pilares de mi investigación: desde el control transcripcional de la biosíntesis de etileno y colonización rizobiana hasta transcriptómica single-cell, fosfoproteómica vegetal e I+D biotecnológica traslacional.
+                    </p>
+                </div>
+
+                <!-- Barra de Filtros por Clúster y Selector de Modo de Vista -->
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 border border-stone dark:border-white/10 bg-black/[0.015] dark:bg-white/[0.02]">
+                    <!-- Filtros por Dominio Científico -->
+                    <div class="flex flex-wrap items-center gap-2" id="brain-filters" role="group" aria-label="Filter research clusters">
+                        <span class="text-[11px] tracking-wider uppercase text-platinum font-semibold mr-1">
+                            <span data-lang="en">Filter:</span>
+                            <span data-lang="es">Filtrar:</span>
+                        </span>
+                        <button type="button" onclick="filterBrainCluster('all')" data-cluster="all" 
+                                class="cluster-filter-btn active-filter px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-stone dark:border-white/20 transition-all cursor-pointer">
+                            <span data-lang="en">All (14)</span>
+                            <span data-lang="es">Todos (14)</span>
+                        </button>
+                        <button type="button" onclick="filterBrainCluster('hormone')" data-cluster="hormone" 
+                                class="cluster-filter-btn px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-stone dark:border-white/20 transition-all cursor-pointer flex items-center gap-1.5 text-platinum hover:text-gold">
+                            <span class="w-2 h-2 rounded-full bg-[#C5A059]"></span>
+                            <span data-lang="en">Ethylene & Hormones (4)</span>
+                            <span data-lang="es">Etileno & Hormonas (4)</span>
+                        </button>
+                        <button type="button" onclick="filterBrainCluster('symbiosis')" data-cluster="symbiosis" 
+                                class="cluster-filter-btn px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-stone dark:border-white/20 transition-all cursor-pointer flex items-center gap-1.5 text-platinum hover:text-gold">
+                            <span class="w-2 h-2 rounded-full bg-[#2E8B57]"></span>
+                            <span data-lang="en">Symbiosis & BNF (4)</span>
+                            <span data-lang="es">Simbiosis & FBN (4)</span>
+                        </button>
+                        <button type="button" onclick="filterBrainCluster('omics')" data-cluster="omics" 
+                                class="cluster-filter-btn px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-stone dark:border-white/20 transition-all cursor-pointer flex items-center gap-1.5 text-platinum hover:text-gold">
+                            <span class="w-2 h-2 rounded-full bg-[#2B6CB0]"></span>
+                            <span data-lang="en">Multi-Omics & Data (3)</span>
+                            <span data-lang="es">Multi-Ómica & Datos (3)</span>
+                        </button>
+                        <button type="button" onclick="filterBrainCluster('biotech')" data-cluster="biotech" 
+                                class="cluster-filter-btn px-3 py-1.5 text-xs font-medium uppercase tracking-wider border border-stone dark:border-white/20 transition-all cursor-pointer flex items-center gap-1.5 text-platinum hover:text-gold">
+                            <span class="w-2 h-2 rounded-full bg-[#9C4221]"></span>
+                            <span data-lang="en">Biotech & Strategy (3)</span>
+                            <span data-lang="es">Biotecnología & I+D (3)</span>
+                        </button>
+                    </div>
+
+                    <!-- Botones de Modo de Vista (Grafo Interactivo vs Matriz) -->
+                    <div class="inline-flex p-0.5 border border-stone dark:border-white/20 shrink-0 self-start lg:self-center">
+                        <button type="button" onclick="setBrainView('graph')" id="btn-view-graph" 
+                                class="px-3 py-1 text-xs uppercase tracking-wider font-semibold bg-onyx text-ivory dark:bg-gold dark:text-onyx transition-all cursor-pointer"
+                                title="Interactive Graph">
+                            <span data-lang="en">☊ Network</span>
+                            <span data-lang="es">☊ Red</span>
+                        </button>
+                        <button type="button" onclick="setBrainView('matrix')" id="btn-view-matrix" 
+                                class="px-3 py-1 text-xs uppercase tracking-wider font-medium text-platinum hover:text-gold transition-all cursor-pointer"
+                                title="Topic Cards Matrix">
+                            <span data-lang="en">☲ Cards</span>
+                            <span data-lang="es">☲ Tarjetas</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CONTENEDOR 1: GRAFO INTERACTIVO DE RED (Canvas con Física) -->
+                <div id="brain-graph-wrapper" class="space-y-6">
+                    <div class="relative border border-stone dark:border-white/10 bg-white/40 dark:bg-white/[0.02] overflow-hidden">
+                        <!-- Canvas Interactivo -->
+                        <canvas id="brainCanvas" class="w-full h-[520px] block cursor-grab active:cursor-grabbing select-none"></canvas>
+                        
+                        <!-- Overlay Guía de Interacción -->
+                        <div class="absolute top-3 left-4 text-[11px] uppercase tracking-[0.14em] text-platinum/90 bg-ivory/90 dark:bg-onyx/90 backdrop-blur-sm px-3 py-1.5 border border-stone/60 dark:border-white/10 pointer-events-none">
+                            <span data-lang="en">✦ Drag nodes · Click to inspect relations</span>
+                            <span data-lang="es">✦ Arrastra nodos · Clic para inspeccionar relaciones</span>
+                        </div>
+
+                        <!-- Botón Reset Grafo -->
+                        <button type="button" onclick="resetBrainGraph()" 
+                                class="absolute top-3 right-4 text-[10px] uppercase tracking-[0.15em] text-platinum hover:text-gold bg-ivory/90 dark:bg-onyx/90 backdrop-blur-sm px-2.5 py-1.5 border border-stone/60 dark:border-white/10 transition-colors cursor-pointer">
+                            <span data-lang="en">↺ Reset View</span>
+                            <span data-lang="es">↺ Reiniciar</span>
+                        </button>
+                    </div>
+
+                    <!-- PANEL INSPECTOR DEL TEMA SELECCIONADO (Live Card) -->
+                    <div id="node-inspector" class="border border-gold/40 bg-black/[0.02] dark:bg-white/[0.02] p-6 sm:p-8 transition-all duration-300 shadow-sm">
+                        <!-- Contenido dinámico inyectado por JavaScript -->
+                    </div>
+                </div>
+
+                <!-- CONTENEDOR 2: MATRIZ ESTRUCTURADA DE TEMAS (Vista Tarjetas) -->
+                <div id="brain-matrix-wrapper" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Tarjetas generadas dinámicamente -->
+                </div>
+
+                <!-- SECCIÓN SINTÉTICA: EJES DE CONVERGENCIA CIENTÍFICA -->
+                <div class="pt-8 border-t border-stone dark:border-white/10">
+                    <h3 class="text-xs tracking-[0.2em] uppercase text-gold font-semibold mb-6">
+                        <span data-lang="en">Cross-Disciplinary Synergies</span>
+                        <span data-lang="es">Ejes de Convergencia Científica</span>
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-sm">
+                        <div class="border border-stone/80 dark:border-white/10 p-5 bg-black/[0.015] dark:bg-white/[0.02]">
+                            <span class="text-xs tracking-[0.18em] uppercase text-gold font-semibold block mb-2">01 · Nutrient Checkpoint</span>
+                            <h4 class="font-serif text-lg font-medium text-onyx dark:text-ivory mb-2">
+                                <span data-lang="en">Nitrate-Ethylene Cross-talk</span>
+                                <span data-lang="es">Cruce Nitrato-Etileno</span>
+                            </h4>
+                            <p class="text-xs leading-relaxed text-onyx/80 dark:text-ivory/75 font-normal">
+                                <span data-lang="en">Dissecting how environmental nitrate pulses stimulate ethylene biosynthesis through ACS/ACO to halt infection thread progress in legumes.</span>
+                                <span data-lang="es">Disección de cómo los pulsos de nitrato ambiental estimulan la biosíntesis de etileno mediante ACS/ACO para detener el avance de hilos de infección.</span>
+                            </p>
+                        </div>
+
+                        <div class="border border-stone/80 dark:border-white/10 p-5 bg-black/[0.015] dark:bg-white/[0.02]">
+                            <span class="text-xs tracking-[0.18em] uppercase text-gold font-semibold block mb-2">02 · Multi-Omics Bridge</span>
+                            <h4 class="font-serif text-lg font-medium text-onyx dark:text-ivory mb-2">
+                                <span data-lang="en">Single-Cell to Phosphoproteome</span>
+                                <span data-lang="es">De Single-Cell al Fosfoproteoma</span>
+                            </h4>
+                            <p class="text-xs leading-relaxed text-onyx/80 dark:text-ivory/75 font-normal">
+                                <span data-lang="en">Coupling cellular transcriptomic resolution with MS phosphopeptide dynamics to pinpoint molecular switches in the skl mutant.</span>
+                                <span data-lang="es">Uniendo la resolución transcriptómica unicelular con espectrometría de masas fosfoproteómica para aislar interruptores en el mutante skl.</span>
+                            </p>
+                        </div>
+
+                        <div class="border border-stone/80 dark:border-white/10 p-5 bg-black/[0.015] dark:bg-white/[0.02]">
+                            <span class="text-xs tracking-[0.18em] uppercase text-gold font-semibold block mb-2">03 · Translational Impact</span>
+                            <h4 class="font-serif text-lg font-medium text-onyx dark:text-ivory mb-2">
+                                <span data-lang="en">Fundamental Science to Biotech</span>
+                                <span data-lang="es">De la Ciencia Básica al Mercado</span>
+                            </h4>
+                            <p class="text-xs leading-relaxed text-onyx/80 dark:text-ivory/75 font-normal">
+                                <span data-lang="en">Leveraging MBA management principles to translate fundamental agrobiological findings into sustainable bioinputs and human health clinical trials.</span>
+                                <span data-lang="es">Aplicando visión de gestión MBA para traducir hallazgos agrobiológicos fundamentales en biofertilizantes sostenibles y ensayos clínicos fitoquímicos.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- Fin #view-brain -->
+
+<!-- PIE DE PÁGINA -->
             <footer class="pt-16 border-t border-stone dark:border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 text-xs text-platinum">
                 <div>
                     <p class="font-serif italic text-xl sm:text-2xl text-onyx dark:text-ivory mb-2">
@@ -922,6 +1172,855 @@
 
         </main>
     </div>
+
+
+    <!-- MOTOR DE PESTAÑAS Y SECOND BRAIN -->
+    <script>
+        // Datos de Nodos y Conexiones del Segundo Cerebro
+        const BRAIN_NODES = [
+            {
+                id: 'ethylene',
+                name_en: 'Ethylene Biosynthesis (ACS & ACO)',
+                name_es: 'Biosíntesis de Etileno (ACS & ACO)',
+                short: 'ACS/ACO',
+                cluster: 'hormone',
+                cluster_name_en: 'Ethylene & Hormonal Signaling',
+                cluster_name_es: 'Etileno & Señalización Hormonal',
+                color: '#C5A059',
+                desc_en: 'Systematic genome-wide identification, evolutionary phylogeny, and expression profiling of the multigenic families 1-aminocyclopropane-1-carboxylate synthase (ACS) and oxidase (ACO) across model and crop legumes.',
+                desc_es: 'Identificación sistemática, filogenia evolutiva y perfil transcripcional de las familias génicas ACS y ACO en leguminosas modelo y cultivo durante las etapas tempranas de colonización.',
+                outputs: ['Journal of Experimental Botany (JXB 2025)', 'UPNA Ph.D. Dissertation'],
+                methods: ['Genomic Annotation (Mtv5.0)', 'Phylogenetics (IQ-TREE)', 'qPCR & Bulk RNA-seq'],
+                connected: ['bnf', 'skl', 'nitrate', 'bulk_rna', 'tf_emsa']
+            },
+            {
+                id: 'bnf',
+                name_en: 'Biological Nitrogen Fixation (BNF)',
+                name_es: 'Fijación Biológica de Nitrógeno (FBN)',
+                short: 'BNF/FBN',
+                cluster: 'symbiosis',
+                cluster_name_en: 'Symbiosis & Plant-Microbe Systems',
+                cluster_name_es: 'Simbiosis & Sistemas Planta-Microbio',
+                color: '#2E8B57',
+                desc_en: 'Enzymatic reduction of atmospheric N₂ into bioavailable ammonium in indeterminate root nodules of Medicago truncatula, reducing synthetic chemical fertilizer dependence.',
+                desc_es: 'Reducción enzimática de N₂ atmosférico a amonio asimilable en nódulos radicales indeterminados de Medicago truncatula, clave para la agrobiología y sostenibilidad de suelos.',
+                outputs: ['Plants (2023)', 'COST Action ROOT-BENEFIT', 'JXB (2025)'],
+                methods: ['Acetylene Reduction Assays', 'Symbiotic Efficiency Scoring', 'Plant Physiology'],
+                connected: ['ethylene', 'medicago', 'rhizobium', 'nitrate', 'allium']
+            },
+            {
+                id: 'medicago',
+                name_en: 'Medicago truncatula Model Legume',
+                name_es: 'Medicago truncatula (Planta Modelo)',
+                short: 'M. truncatula',
+                cluster: 'symbiosis',
+                cluster_name_en: 'Symbiosis & Plant-Microbe Systems',
+                cluster_name_es: 'Simbiosis & Sistemas Planta-Microbio',
+                color: '#2E8B57',
+                desc_en: 'Genetic and molecular model for indeterminate nodulators. Used to study symbiotic gene expression, mutant phenotyping, and single-cell root developmental trajectories.',
+                desc_es: 'Modelo genético y molecular para leguminosas de nódulo indeterminado (alfalfa, guisante). Utilizada para diseccionar expresión génica, mutantes y trayectorias celulares.',
+                outputs: ['Doctoral Research UPNA (IMAB Institute)'],
+                methods: ['Hydroponic & Aeroponic Culture', 'Grafting', 'Root Hair Imaging'],
+                connected: ['bnf', 'rhizobium', 'scrnaseq', 'bulk_rna', 'skl']
+            },
+            {
+                id: 'rhizobium',
+                name_en: 'Rhizobial Mutualism & Infection',
+                name_es: 'Simbiosis Rizobiana & Infección',
+                short: 'Rhizobium',
+                cluster: 'symbiosis',
+                cluster_name_en: 'Symbiosis & Plant-Microbe Systems',
+                cluster_name_es: 'Simbiosis & Sistemas Planta-Microbio',
+                color: '#2E8B57',
+                desc_en: 'Molecular cross-talk between Sinorhizobium meliloti and host roots, investigating Nod factor signaling, infection thread progression, and symbiosome formation.',
+                desc_es: 'Diálogo molecular entre Sinorhizobium meliloti y la raíz huésped: factores Nod, progreso de hilos de infección, internalización y organogénesis nodular.',
+                outputs: ['XVIII & XIX SEFIN Congresses (2022-2024)'],
+                methods: ['Bacterial Inoculation Assays', 'GFP Reporter Microscopy', 'CFU Titration'],
+                connected: ['bnf', 'medicago', 'ethylene', 'mycorrhiza']
+            },
+            {
+                id: 'skl',
+                name_en: 'skl (Sickle) Ethylene-Insensitive Mutant',
+                name_es: 'Mutante skl (Insensible al Etileno)',
+                short: 'skl Mutant',
+                cluster: 'hormone',
+                cluster_name_en: 'Ethylene & Hormonal Signaling',
+                cluster_name_es: 'Etileno & Señalización Hormonal',
+                color: '#C5A059',
+                desc_en: 'Ethylene-insensitive mutant (EIN2 ortholog) characterized by hypernodulation and insensitivity to ethylene-induced nodule repression, used as a functional genetic comparative tool.',
+                desc_es: 'Mutante ortólogo de EIN2 que presenta hipernodulación e insensibilidad al freno ejercido por etileno, utilizado para aislar vías de señalización independientes.',
+                outputs: ['University of Vienna Fellowship (2024)', 'SEFIN 2022'],
+                methods: ['Comparative Phenomics', 'Phosphoproteomics Screens', 'Hormone Assays'],
+                connected: ['ethylene', 'medicago', 'proteomics', 'nitrate']
+            },
+            {
+                id: 'nitrate',
+                name_en: 'Early Nitrate & Ammonium Signaling',
+                name_es: 'Señalización Temprana por Nitrato y Amonio',
+                short: 'NO₃⁻ / NH₄⁺',
+                cluster: 'hormone',
+                cluster_name_en: 'Ethylene & Hormonal Signaling',
+                cluster_name_es: 'Etileno & Señalización Hormonal',
+                color: '#C5A059',
+                desc_en: 'Dissection of systemic nitrate and ammonium inhibition of symbiotic nitrogen fixation, identifying nutrient transporters (NPF/AMT) and ethylene-mediated repression cascades.',
+                desc_es: 'Mecanismos de inhibición sistémica de la fijación de nitrógeno por nitrato y amonio, identificando transportadores (NPF/AMT) y cascadas represoras dependientes de etileno.',
+                outputs: ['Plant Biology Europe (Budapest 2025)', 'SEFIN (Salamanca 2024)'],
+                methods: ['Nutrient Pulse Experiments', 'Membrane Transporter Profiling'],
+                connected: ['ethylene', 'bnf', 'proteomics', 'skl', 'bulk_rna']
+            },
+            {
+                id: 'tf_emsa',
+                name_en: 'Transcription Factors & EMSA Workflows',
+                name_es: 'Factores de Transcripción & Ensayos EMSA',
+                short: 'TF & EMSA',
+                cluster: 'hormone',
+                cluster_name_en: 'Ethylene & Hormonal Signaling',
+                cluster_name_es: 'Etileno & Señalización Hormonal',
+                color: '#C5A059',
+                desc_en: 'Validation of physical protein-DNA interactions between symbiotic transcription factors and promoter cis-regulatory elements of ethylene biosynthesis genes.',
+                desc_es: 'Validación de interacciones físicas proteína-ADN entre factores de transcripción simbióticos y elementos promotores de genes de biosíntesis de etileno.',
+                outputs: ['Wageningen University & Research Fellowship (2022)'],
+                methods: ['Electrophoretic Mobility Shift Assay (EMSA)', 'Golden Gate Cloning', 'Protein Expression'],
+                connected: ['ethylene', 'bulk_rna', 'datascience']
+            },
+            {
+                id: 'scrnaseq',
+                name_en: 'Single-Cell & Single-Nucleus RNA-seq',
+                name_es: 'Single-Cell & Single-Nucleus Transcriptómica',
+                short: 'scRNA-seq',
+                cluster: 'omics',
+                cluster_name_en: 'Multi-Omics & Data Science',
+                cluster_name_es: 'Multi-Ómica & Ciencia de Datos',
+                color: '#2B6CB0',
+                desc_en: 'Cell-type resolved transcriptomic profiling across nodule zones, isolating cell-type-specific responses to bacterial colonization and nutrient stimuli.',
+                desc_es: 'Perfilado transcriptómico con resolución unicelular de zonas nodulares, aislando respuestas específicas de tipo celular frente a la colonización y estímulos nutricionales.',
+                outputs: ['IMAB Bioinformatics Hub', 'Doctoral Thesis UPNA'],
+                methods: ['10x Genomics', 'Seurat Workflow', 'UMAP Dimensionality Reduction', 'Trajectory Inference'],
+                connected: ['medicago', 'datascience', 'bulk_rna']
+            },
+            {
+                id: 'bulk_rna',
+                name_en: 'Bulk RNA-seq & Phylogenomics',
+                name_es: 'Transcriptómica Masiva & Filogenia Genómica',
+                short: 'RNA-seq',
+                cluster: 'omics',
+                cluster_name_en: 'Multi-Omics & Data Science',
+                cluster_name_es: 'Multi-Ómica & Ciencia de Datos',
+                color: '#2B6CB0',
+                desc_en: 'Comprehensive RNA sequencing datasets analyzing temporal expression dynamics in wild-type and mutant lines during early symbiotic stages and nitrogen inhibition.',
+                desc_es: 'Secuenciación masiva de ARN analizando la dinámica temporal en líneas silvestres y mutantes durante etapas simbióticas tempranas e inhibición por nitrógeno.',
+                outputs: ['JXB (Oxford Academic 2025)', 'Government of Navarre Project PC112-113'],
+                methods: ['Illumina NovaSeq', 'DESeq2 & EdgeR', 'IQ-TREE Phylogenetic Reconstruction'],
+                connected: ['ethylene', 'scrnaseq', 'datascience', 'tf_emsa', 'nitrate']
+            },
+            {
+                id: 'proteomics',
+                name_en: 'Proteomics & Phosphoproteomics',
+                name_es: 'Proteómica & Fosfoproteómica Funcional',
+                short: 'Phospho-MS',
+                cluster: 'omics',
+                cluster_name_en: 'Multi-Omics & Data Science',
+                cluster_name_es: 'Multi-Ómica & Ciencia de Datos',
+                color: '#2B6CB0',
+                desc_en: 'Label-free LC-MS/MS quantitative proteomics and titanium dioxide phosphopeptide enrichment to map phosphorylation events triggered by nitrate in symbiotic roots.',
+                desc_es: 'Proteómica cuantitativa por LC-MS/MS y enriquecimiento de fosfopéptidos para mapear eventos de fosforilación desencadenados por nitrato en raíces simbióticas.',
+                outputs: ['University of Vienna (Prof. Dr. Stefanie Wienkoop Lab, 2024)'],
+                methods: ['LC-MS/MS', 'TiO₂ Phospho-enrichment', 'MaxQuant Data Analysis'],
+                connected: ['skl', 'nitrate', 'datascience']
+            },
+            {
+                id: 'datascience',
+                name_en: 'Data Science, Machine Learning & R/Python',
+                name_es: 'Ciencia de Datos, Machine Learning en R & Python',
+                short: 'Data Science',
+                cluster: 'omics',
+                cluster_name_en: 'Multi-Omics & Data Science',
+                cluster_name_es: 'Multi-Ómica & Ciencia de Datos',
+                color: '#2B6CB0',
+                desc_en: 'Quantitative modeling, multivariate statistical methods, bioinformatic pipeline automation, and multi-omics integration connecting genes, proteins, and phenotypes.',
+                desc_es: 'Modelado cuantitativo, estadística multivariante, automatización de pipelines bioinformáticos e integración multi-ómica que vincula genes, proteínas y fenotipos.',
+                outputs: ['MSc in Data Science (UOC 2024-2026)', 'Advanced R Certification (2022)'],
+                methods: ['R (Bioconductor, Tidyverse)', 'Python (Pandas, SciPy, Scikit-learn, NetworkX)', 'Bash & Git'],
+                connected: ['scrnaseq', 'bulk_rna', 'proteomics', 'tf_emsa', 'rd_strategy']
+            },
+            {
+                id: 'mycorrhiza',
+                name_en: 'Arbuscular Mycorrhizal Fungi (AMF)',
+                name_es: 'Micorrizas Arbusculares (HMA)',
+                short: 'AMF / HMA',
+                cluster: 'biotech',
+                cluster_name_en: 'Applied Biotechnology & R&D Strategy',
+                cluster_name_es: 'Biotecnología Aplicada & Dirección I+D',
+                color: '#9C4221',
+                desc_en: 'Investigation of fungal mutualism in Solanum lycopersicum, dissecting physiological plant performance, phosphorus acquisition, and mycorrhiza-rhizobium shared signaling pathways.',
+                desc_es: 'Investigación del mutualismo fúngico en Solanum lycopersicum, evaluando rendimiento fisiológico, captura de fósforo y vías de señalización comunes con rizobios.',
+                outputs: ['CSIC JAE-Intro Fellowship (EEZ-CSIC Granada 2021-2022)'],
+                methods: ['Mycorrhizal Root Colonization Staining', 'Agronomic Bioassays'],
+                connected: ['rhizobium', 'allium', 'bnf']
+            },
+            {
+                id: 'allium',
+                name_en: 'Allium Phytochemical Extracts & PTSO',
+                name_es: 'Fitoquímicos Bioactivos de Allium (PTSO)',
+                short: 'Allium / PTSO',
+                cluster: 'biotech',
+                cluster_name_en: 'Applied Biotechnology & R&D Strategy',
+                cluster_name_es: 'Biotecnología Aplicada & Dirección I+D',
+                color: '#9C4221',
+                desc_en: 'Translational applied R&D testing propyl propane thiosulfonate (PTSO) and Alliaceae extracts across plant phytopathology, poultry production, and human clinical trials.',
+                desc_es: 'I+D aplicada evaluando propil propano tiosulfonato (PTSO) de Alliaceae frente a fitopatógenos, en nutrición avícola y en ensayos clínicos humanos (COVID-19 y colesterol LDL).',
+                outputs: ['Nutrients (2024)', 'Foods (2024)', 'Animal Science Proceedings (2022)'],
+                methods: ['Antimicrobial Bioassays', 'Clinical Trial Protocols', 'Phytochemical Formulation'],
+                connected: ['mycorrhiza', 'rd_strategy', 'bnf']
+            },
+            {
+                id: 'rd_strategy',
+                name_en: 'R&D Management & Technology Transfer (MBA)',
+                name_es: 'Dirección Estratégica de I+D+i & Transferencia (MBA)',
+                short: 'R&D Strategy',
+                cluster: 'biotech',
+                cluster_name_en: 'Applied Biotechnology & R&D Strategy',
+                cluster_name_es: 'Biotecnología Aplicada & Dirección I+D',
+                color: '#9C4221',
+                desc_en: 'Strategic leadership bridging fundamental biological discovery with market valorization, private-public consortia, European grant coordination (COST, FEDER), and IP evaluation.',
+                desc_es: 'Liderazgo estratégico uniendo investigación biológica fundamental con transferencia de valor, consorcios público-privados, gestión de fondos europeos y patentes.',
+                outputs: ['MBA (University of Granada 2023)', 'COST Action & Ministerial Grants Management'],
+                methods: ['Project Valuation', 'Technology Readiness Level (TRL) Assessment', 'IP Strategy'],
+                connected: ['allium', 'datascience', 'bnf']
+            }
+        ];
+
+        // Estado del Segundo Cerebro
+        let selectedNodeId = 'ethylene';
+        let activeClusterFilter = 'all';
+        let brainViewMode = 'graph';
+        let brainSim = null;
+
+        // Función para cambiar de Pestaña Principal (Dossier vs Second Brain)
+        function switchTab(tabId) {
+            const isDossier = tabId === 'dossier';
+            const dossierView = document.getElementById('view-dossier');
+            const brainView = document.getElementById('view-brain');
+            const mainTabDossier = document.getElementById('main-tab-dossier');
+            const mainTabBrain = document.getElementById('main-tab-brain');
+            const navTabDossier = document.getElementById('tab-nav-dossier');
+            const navTabBrain = document.getElementById('tab-nav-brain');
+            const headerNav = document.getElementById('header-section-nav');
+            const indDossier = document.getElementById('tab-indicator-dossier');
+            const indBrain = document.getElementById('tab-indicator-brain');
+
+            if (isDossier) {
+                if (dossierView) dossierView.classList.remove('hidden');
+                if (brainView) brainView.classList.add('hidden');
+                
+                if (mainTabDossier) {
+                    mainTabDossier.classList.add('active-tab');
+                    mainTabDossier.classList.remove('text-platinum');
+                }
+                if (mainTabBrain) {
+                    mainTabBrain.classList.remove('active-tab');
+                    mainTabBrain.classList.add('text-platinum');
+                }
+                if (navTabDossier) {
+                    navTabDossier.classList.add('active-tab-header');
+                    navTabDossier.classList.remove('text-platinum');
+                }
+                if (navTabBrain) {
+                    navTabBrain.classList.remove('active-tab-header');
+                    navTabBrain.classList.add('text-platinum');
+                }
+                if (headerNav) headerNav.classList.remove('opacity-30', 'pointer-events-none');
+                if (indDossier) indDossier.classList.remove('hidden');
+                if (indBrain) indBrain.classList.add('hidden');
+            } else {
+                if (dossierView) dossierView.classList.add('hidden');
+                if (brainView) brainView.classList.remove('hidden');
+
+                if (mainTabDossier) {
+                    mainTabDossier.classList.remove('active-tab');
+                    mainTabDossier.classList.add('text-platinum');
+                }
+                if (mainTabBrain) {
+                    mainTabBrain.classList.add('active-tab');
+                    mainTabBrain.classList.remove('text-platinum');
+                }
+                if (navTabDossier) {
+                    navTabDossier.classList.remove('active-tab-header');
+                    navTabDossier.classList.add('text-platinum');
+                }
+                if (navTabBrain) {
+                    navTabBrain.classList.add('active-tab-header');
+                    navTabBrain.classList.remove('text-platinum');
+                }
+                if (headerNav) headerNav.classList.add('opacity-30', 'pointer-events-none');
+                if (indDossier) indDossier.classList.add('hidden');
+                if (indBrain) indBrain.classList.remove('hidden');
+
+                // Inicializar grafo interactivo
+                setTimeout(() => {
+                    initSecondBrainGraph();
+                }, 50);
+            }
+        }
+
+        // Renderizar el inspector del nodo seleccionado
+        function updateNodeInspector(nodeId) {
+            const node = BRAIN_NODES.find(n => n.id === nodeId);
+            if (!node) return;
+            selectedNodeId = nodeId;
+
+            const isEn = document.documentElement.getAttribute('lang') === 'en';
+            const inspectorEl = document.getElementById('node-inspector');
+            if (!inspectorEl) return;
+
+            const connectedNodes = node.connected.map(id => BRAIN_NODES.find(n => n.id === id)).filter(Boolean);
+
+            inspectorEl.innerHTML = `
+                <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4 pb-4 border-b border-stone/60 dark:border-white/10">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-3 h-3 rounded-full" style="background-color: ${node.color}"></span>
+                            <span class="text-xs tracking-[0.16em] uppercase font-semibold text-platinum">
+                                ${isEn ? node.cluster_name_en : node.cluster_name_es}
+                            </span>
+                            <span class="text-[10px] tracking-wider uppercase px-2 py-0.5 border border-stone/70 dark:border-white/15 text-platinum">
+                                ID: ${node.short}
+                            </span>
+                        </div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-medium text-onyx dark:text-ivory leading-snug">
+                            ${isEn ? node.name_en : node.name_es}
+                        </h3>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <span class="text-xs uppercase tracking-wider text-gold font-medium block">
+                            ${connectedNodes.length} ${isEn ? 'Direct Connections' : 'Relaciones Directas'}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-[14px] leading-relaxed text-onyx/85 dark:text-ivory/80 font-normal">
+                        ${isEn ? node.desc_en : node.desc_es}
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-stone/40 dark:border-white/5 text-xs">
+                    <div>
+                        <span class="text-[11px] tracking-[0.15em] uppercase font-semibold text-gold block mb-2.5">
+                            ${isEn ? 'Directly Interconnected Themes' : 'Temas Directamente Interconectados'}:
+                        </span>
+                        <div class="flex flex-wrap gap-2">
+                            ${connectedNodes.map(c => `
+                                <button type="button" onclick="selectBrainNode('${c.id}')" 
+                                        class="px-2.5 py-1 text-[11px] tracking-wide uppercase border border-stone dark:border-white/15 hover:border-gold dark:hover:border-gold transition-colors flex items-center gap-1.5 cursor-pointer bg-white/40 dark:bg-white/5">
+                                    <span class="w-1.5 h-1.5 rounded-full" style="background-color: ${c.color}"></span>
+                                    <span>${isEn ? c.name_en : c.name_es}</span>
+                                    <span class="text-gold font-bold">↗</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="mb-4">
+                            <span class="text-[11px] tracking-[0.15em] uppercase font-semibold text-platinum block mb-1.5">
+                                ${isEn ? 'Key Evidence & Outputs' : 'Evidencia & Publicaciones Clave'}:
+                            </span>
+                            <ul class="space-y-1 text-onyx/80 dark:text-ivory/70 text-xs">
+                                ${node.outputs.map(out => `<li>· ${out}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <span class="text-[11px] tracking-[0.15em] uppercase font-semibold text-platinum block mb-1.5">
+                                ${isEn ? 'Methodological Stack' : 'Herramientas & Métodos'}:
+                            </span>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${node.methods.map(m => `
+                                    <span class="px-2 py-0.5 text-[10px] uppercase tracking-wider bg-black/[0.04] dark:bg-white/10 text-onyx/75 dark:text-ivory/75">
+                                        ${m}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Seleccionar nodo desde cualquier lugar
+        function selectBrainNode(nodeId) {
+            selectedNodeId = nodeId;
+            updateNodeInspector(nodeId);
+            if (brainSim) {
+                brainSim.highlightNode(nodeId);
+            }
+        }
+
+        // Filtrar nodos por clúster
+        function filterBrainCluster(cluster) {
+            activeClusterFilter = cluster;
+            document.querySelectorAll('.cluster-filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-cluster') === cluster) {
+                    btn.classList.add('active-filter');
+                    btn.classList.remove('text-platinum');
+                } else {
+                    btn.classList.remove('active-filter');
+                    btn.classList.add('text-platinum');
+                }
+            });
+
+            if (brainSim) {
+                brainSim.setFilter(cluster);
+            }
+            renderMatrixView();
+        }
+
+        // Alternar vista de Grafo vs Matriz
+        function setBrainView(viewMode) {
+            brainViewMode = viewMode;
+            const graphWrapper = document.getElementById('brain-graph-wrapper');
+            const matrixWrapper = document.getElementById('brain-matrix-wrapper');
+            const btnGraph = document.getElementById('btn-view-graph');
+            const btnMatrix = document.getElementById('btn-view-matrix');
+
+            if (viewMode === 'graph') {
+                if (graphWrapper) graphWrapper.classList.remove('hidden');
+                if (matrixWrapper) matrixWrapper.classList.add('hidden');
+                if (btnGraph) {
+                    btnGraph.className = 'px-3 py-1 text-xs uppercase tracking-wider font-semibold bg-onyx text-ivory dark:bg-gold dark:text-onyx transition-all cursor-pointer';
+                }
+                if (btnMatrix) {
+                    btnMatrix.className = 'px-3 py-1 text-xs uppercase tracking-wider font-medium text-platinum hover:text-gold transition-all cursor-pointer';
+                }
+                setTimeout(() => {
+                    initSecondBrainGraph();
+                }, 50);
+            } else {
+                if (graphWrapper) graphWrapper.classList.add('hidden');
+                if (matrixWrapper) matrixWrapper.classList.remove('hidden');
+                if (btnGraph) {
+                    btnGraph.className = 'px-3 py-1 text-xs uppercase tracking-wider font-medium text-platinum hover:text-gold transition-all cursor-pointer';
+                }
+                if (btnMatrix) {
+                    btnMatrix.className = 'px-3 py-1 text-xs uppercase tracking-wider font-semibold bg-onyx text-ivory dark:bg-gold dark:text-onyx transition-all cursor-pointer';
+                }
+                renderMatrixView();
+            }
+        }
+
+        // Renderizar la Matriz de Tarjetas
+        function renderMatrixView() {
+            const matrixWrapper = document.getElementById('brain-matrix-wrapper');
+            if (!matrixWrapper) return;
+
+            const isEn = document.documentElement.getAttribute('lang') === 'en';
+            const filtered = activeClusterFilter === 'all' 
+                ? BRAIN_NODES 
+                : BRAIN_NODES.filter(n => n.cluster === activeClusterFilter);
+
+            matrixWrapper.innerHTML = filtered.map(node => {
+                const connectedNodes = node.connected.map(id => BRAIN_NODES.find(n => n.id === id)).filter(Boolean);
+                return `
+                    <div class="border border-stone dark:border-white/10 p-6 bg-white/40 dark:bg-white/[0.02] hover:border-gold dark:hover:border-gold transition-colors duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="text-xs uppercase tracking-wider font-semibold flex items-center gap-1.5" style="color: ${node.color}">
+                                    <span class="w-2 h-2 rounded-full" style="background-color: ${node.color}"></span>
+                                    ${isEn ? node.cluster_name_en : node.cluster_name_es}
+                                </span>
+                                <span class="text-[10px] uppercase tracking-wider text-platinum font-mono">
+                                    ${node.short}
+                                </span>
+                            </div>
+
+                            <h3 class="font-serif text-xl font-medium text-onyx dark:text-ivory mb-2">
+                                ${isEn ? node.name_en : node.name_es}
+                            </h3>
+
+                            <p class="text-xs leading-relaxed text-onyx/80 dark:text-ivory/75 font-normal mb-4">
+                                ${isEn ? node.desc_en : node.desc_es}
+                            </p>
+                        </div>
+
+                        <div>
+                            <span class="text-[10px] tracking-[0.14em] uppercase font-semibold text-platinum block mb-1.5">
+                                ${isEn ? 'Connected to' : 'Conectado con'}:
+                            </span>
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                ${connectedNodes.map(c => `
+                                    <button type="button" onclick="selectBrainNode('${c.id}'); setBrainView('graph');" 
+                                            class="px-2 py-0.5 text-[10px] uppercase tracking-wider border border-stone/70 dark:border-white/10 hover:border-gold text-platinum hover:text-onyx dark:hover:text-white transition-colors cursor-pointer bg-black/[0.02] dark:bg-white/5">
+                                        ${c.short}
+                                    </button>
+                                `).join('')}
+                            </div>
+
+                            <div class="pt-3 border-t border-stone/50 dark:border-white/5 flex items-center justify-between text-[11px] text-gold">
+                                <span>${node.outputs[0] || ''}</span>
+                                <button type="button" onclick="selectBrainNode('${node.id}'); setBrainView('graph');" class="hover:underline font-semibold cursor-pointer">
+                                    ${isEn ? 'View in Graph ↗' : 'Ver en Red ↗'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // MOTOR DE SIMULACIÓN Y FÍSICA DEL GRAFO (Canvas 2D)
+        function initSecondBrainGraph() {
+            const canvas = document.getElementById('brainCanvas');
+            if (!canvas) return;
+
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width === 0) return;
+
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            const ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            const width = rect.width;
+            const height = rect.height;
+
+            // Inicializar o reposicionar nodos circularmente
+            const centerX = width / 2;
+            const centerY = height / 2;
+            const radius = Math.min(width, height) * 0.38;
+
+            const nodes = BRAIN_NODES.map((d, i) => {
+                const angle = (i / BRAIN_NODES.length) * 2 * Math.PI;
+                return {
+                    ...d,
+                    x: centerX + radius * Math.cos(angle) + (Math.random() - 0.5) * 20,
+                    y: centerY + radius * Math.sin(angle) + (Math.random() - 0.5) * 20,
+                    vx: 0,
+                    vy: 0,
+                    r: d.id === 'ethylene' || d.id === 'bnf' ? 24 : 18
+                };
+            });
+
+            let draggedNode = null;
+            let hoveredNode = null;
+            let isDragging = false;
+            let animId = null;
+
+            function isDarkTheme() {
+                return document.documentElement.classList.contains('dark');
+            }
+
+            function isEnglish() {
+                return document.documentElement.getAttribute('lang') === 'en';
+            }
+
+            // Simulación física por fuerzas (Springs + Repulsión + Gravedad central)
+            function tick() {
+                const kRepel = 2400;
+                const kSpring = 0.035;
+                const naturalLength = 110;
+                const damping = 0.85;
+
+                // Repulsión entre todos los pares
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const n1 = nodes[i];
+                        const n2 = nodes[j];
+                        const dx = n2.x - n1.x;
+                        const dy = n2.y - n1.y;
+                        const distSq = dx * dx + dy * dy || 1;
+                        const dist = Math.sqrt(distSq);
+                        const force = kRepel / distSq;
+                        const fx = (dx / dist) * force;
+                        const fy = (dy / dist) * force;
+                        n1.vx -= fx;
+                        n1.vy -= fy;
+                        n2.vx += fx;
+                        n2.vy += fy;
+                    }
+                }
+
+                // Atracción por aristas conectadas
+                for (let i = 0; i < nodes.length; i++) {
+                    const n1 = nodes[i];
+                    n1.connected.forEach(targetId => {
+                        const n2 = nodes.find(n => n.id === targetId);
+                        if (n2) {
+                            const dx = n2.x - n1.x;
+                            const dy = n2.y - n1.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                            const delta = dist - naturalLength;
+                            const force = delta * kSpring;
+                            const fx = (dx / dist) * force;
+                            const fy = (dy / dist) * force;
+                            n1.vx += fx;
+                            n1.vy += fy;
+                        }
+                    });
+                }
+
+                // Gravedad suave al centro y fricción
+                nodes.forEach(n => {
+                    if (n !== draggedNode) {
+                        n.vx += (centerX - n.x) * 0.008;
+                        n.vy += (centerY - n.y) * 0.008;
+                        n.vx *= damping;
+                        n.vy *= damping;
+                        n.x += n.vx;
+                        n.y += n.vy;
+
+                        // Bordes
+                        const pad = n.r + 20;
+                        if (n.x < pad) n.x = pad;
+                        if (n.x > width - pad) n.x = width - pad;
+                        if (n.y < pad) n.y = pad;
+                        if (n.y > height - pad) n.y = height - pad;
+                    }
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+
+                const dark = isDarkTheme();
+                const en = isEnglish();
+                const selected = nodes.find(n => n.id === selectedNodeId);
+                const connectedSet = new Set(selected ? selected.connected : []);
+                if (selected) connectedSet.add(selected.id);
+
+                // 1. Dibujar Enlaces (Edges)
+                for (let i = 0; i < nodes.length; i++) {
+                    const n1 = nodes[i];
+                    n1.connected.forEach(targetId => {
+                        const n2 = nodes.find(n => n.id === targetId);
+                        if (!n2 || n1.id > n2.id) return; // evitar duplicar
+
+                        const isConnectedToSelected = (selected && (n1.id === selected.id || n2.id === selected.id));
+                        const matchesCluster = activeClusterFilter === 'all' || n1.cluster === activeClusterFilter || n2.cluster === activeClusterFilter;
+
+                        ctx.beginPath();
+                        ctx.moveTo(n1.x, n1.y);
+                        ctx.lineTo(n2.x, n2.y);
+
+                        if (isConnectedToSelected) {
+                            ctx.strokeStyle = dark ? '#D4AF37' : '#96681E';
+                            ctx.lineWidth = 2.2;
+                            ctx.globalAlpha = 0.9;
+                        } else if (selected) {
+                            ctx.strokeStyle = dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)';
+                            ctx.lineWidth = 0.8;
+                            ctx.globalAlpha = 0.25;
+                        } else if (!matchesCluster) {
+                            ctx.strokeStyle = dark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)';
+                            ctx.lineWidth = 0.7;
+                            ctx.globalAlpha = 0.15;
+                        } else {
+                            ctx.strokeStyle = dark ? 'rgba(255,255,255,0.18)' : '#D6D1C7';
+                            ctx.lineWidth = 1.1;
+                            ctx.globalAlpha = 0.7;
+                        }
+                        ctx.stroke();
+                        ctx.globalAlpha = 1.0;
+                    });
+                }
+
+                // 2. Dibujar Nodos
+                nodes.forEach(n => {
+                    const isSelected = n.id === selectedNodeId;
+                    const isNeighbor = connectedSet.has(n.id);
+                    const isHovered = hoveredNode && hoveredNode.id === n.id;
+                    const matchesCluster = activeClusterFilter === 'all' || n.cluster === activeClusterFilter;
+
+                    let nodeAlpha = 1.0;
+                    if (selected && !isNeighbor && !isSelected) {
+                        nodeAlpha = 0.22;
+                    } else if (activeClusterFilter !== 'all' && !matchesCluster && !isSelected) {
+                        nodeAlpha = 0.22;
+                    }
+                    ctx.globalAlpha = nodeAlpha;
+
+                    // Halo exterior si está seleccionado o con hover
+                    if (isSelected || isHovered) {
+                        ctx.beginPath();
+                        ctx.arc(n.x, n.y, n.r + 9, 0, 2 * Math.PI);
+                        ctx.fillStyle = isSelected 
+                            ? (dark ? 'rgba(212, 175, 55, 0.22)' : 'rgba(150, 104, 30, 0.18)')
+                            : 'rgba(255, 255, 255, 0.12)';
+                        ctx.fill();
+                    }
+
+                    // Círculo base del nodo
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.r, 0, 2 * Math.PI);
+                    ctx.fillStyle = dark ? '#141416' : '#FAF8F5';
+                    ctx.fill();
+
+                    // Anillo exterior con el color del clúster
+                    ctx.lineWidth = isSelected ? 3.5 : 2.2;
+                    ctx.strokeStyle = isSelected ? (dark ? '#D4AF37' : '#96681E') : n.color;
+                    ctx.stroke();
+
+                    // Punto interior distintivo
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, isSelected ? 5.5 : 3.5, 0, 2 * Math.PI);
+                    ctx.fillStyle = n.color;
+                    ctx.fill();
+
+                    // Texto etiqueta debajo del nodo
+                    ctx.font = isSelected 
+                        ? '600 11px Montserrat, sans-serif'
+                        : '500 10px Montserrat, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'top';
+                    ctx.fillStyle = dark ? '#FAF8F5' : '#18181B';
+
+                    const label = n.short;
+                    ctx.fillText(label, n.x, n.y + n.r + 6);
+
+                    ctx.globalAlpha = 1.0;
+                });
+            }
+
+            function loop() {
+                tick();
+                draw();
+                animId = requestAnimationFrame(loop);
+            }
+
+            loop();
+
+            function getNodeAt(x, y) {
+                for (let i = nodes.length - 1; i >= 0; i--) {
+                    const n = nodes[i];
+                    const dx = n.x - x;
+                    const dy = n.y - y;
+                    if (Math.sqrt(dx * dx + dy * dy) <= n.r + 6) {
+                        return n;
+                    }
+                }
+                return null;
+            }
+
+            function getCanvasCoords(e) {
+                const r = canvas.getBoundingClientRect();
+                return {
+                    x: e.clientX - r.left,
+                    y: e.clientY - r.top
+                };
+            }
+
+            // Event Listeners para interacción Mouse & Touch
+            canvas.onmousedown = (e) => {
+                const pt = getCanvasCoords(e);
+                const n = getNodeAt(pt.x, pt.y);
+                if (n) {
+                    draggedNode = n;
+                    isDragging = true;
+                    selectBrainNode(n.id);
+                } else {
+                    // Clic en vacío deselecciona foco
+                    selectedNodeId = null;
+                    const inspectorEl = document.getElementById('node-inspector');
+                    if (inspectorEl) {
+                        const en = isEnglish();
+                        inspectorEl.innerHTML = `
+                            <div class="text-center py-6 text-platinum">
+                                <span class="text-2xl block mb-2">◈</span>
+                                <p class="text-xs uppercase tracking-wider font-medium">
+                                    ${en ? 'Click any node in the graph or matrix to inspect relationships' : 'Haz clic en cualquier nodo de la red para inspeccionar sus relaciones'}
+                                </p>
+                            </div>
+                        `;
+                    }
+                }
+            };
+
+            window.onmousemove = (e) => {
+                const pt = getCanvasCoords(e);
+                if (isDragging && draggedNode) {
+                    draggedNode.x = Math.max(30, Math.min(width - 30, pt.x));
+                    draggedNode.y = Math.max(30, Math.min(height - 30, pt.y));
+                } else if (!isDragging) {
+                    const n = getNodeAt(pt.x, pt.y);
+                    hoveredNode = n;
+                    canvas.style.cursor = n ? 'pointer' : 'grab';
+                }
+            };
+
+            window.onmouseup = () => {
+                isDragging = false;
+                draggedNode = null;
+            };
+
+            // Touch events para móviles
+            canvas.ontouchstart = (e) => {
+                if (e.touches.length === 1) {
+                    const touch = e.touches[0];
+                    const pt = getCanvasCoords(touch);
+                    const n = getNodeAt(pt.x, pt.y);
+                    if (n) {
+                        draggedNode = n;
+                        selectBrainNode(n.id);
+                    }
+                }
+            };
+
+            canvas.ontouchmove = (e) => {
+                if (draggedNode && e.touches.length === 1) {
+                    const touch = e.touches[0];
+                    const pt = getCanvasCoords(touch);
+                    draggedNode.x = Math.max(30, Math.min(width - 30, pt.x));
+                    draggedNode.y = Math.max(30, Math.min(height - 30, pt.y));
+                    e.preventDefault();
+                }
+            };
+
+            canvas.ontouchend = () => {
+                draggedNode = null;
+            };
+
+            // Métodos públicos del motor del grafo
+            brainSim = {
+                highlightNode: (id) => {
+                    selectedNodeId = id;
+                },
+                setFilter: (cluster) => {
+                    activeClusterFilter = cluster;
+                },
+                reset: () => {
+                    nodes.forEach((d, i) => {
+                        const angle = (i / nodes.length) * 2 * Math.PI;
+                        d.x = centerX + radius * Math.cos(angle);
+                        d.y = centerY + radius * Math.sin(angle);
+                        d.vx = 0;
+                        d.vy = 0;
+                    });
+                    selectedNodeId = 'ethylene';
+                    updateNodeInspector('ethylene');
+                },
+                destroy: () => {
+                    if (animId) cancelAnimationFrame(animId);
+                }
+            };
+
+            // Inicializar el inspector con el primer nodo
+            updateNodeInspector(selectedNodeId || 'ethylene');
+        }
+
+        function resetBrainGraph() {
+            if (brainSim) {
+                brainSim.reset();
+            }
+        }
+
+        // Re-renderizar inspector y matriz si cambia el idioma
+        const originalSetLanguage = window.setLanguage;
+        window.setLanguage = function(lang) {
+            if (originalSetLanguage) originalSetLanguage(lang);
+            if (selectedNodeId) updateNodeInspector(selectedNodeId);
+            if (brainViewMode === 'matrix') renderMatrixView();
+        };
+    </script>
 
 </body>
 </html>
